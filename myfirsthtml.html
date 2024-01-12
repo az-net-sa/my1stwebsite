@@ -1,0 +1,123 @@
+<!-- python3 -m http.server -->
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta charset="UTF-8">
+    <title>the best webpage ever</title>
+    <style>
+        /* CSS code goes here */
+        .title {
+  color: red;
+font-size: 20px;
+ background-color: #f0f0f0;
+  font-family: "Arial", sans-serif; 
+font-size: 18px; 
+font-weight: bold; 
+text-align: center;
+
+}
+
+.aljlala {
+
+color: rgb(42, 22, 173);
+font-style: bold;
+font-family: 'Courier New', Courier, monospace;
+}
+    </style>
+</head>
+<body>
+    <!-- HTML code goes here -->
+
+    <h1 class="title">امباااع</h1>  
+
+    <img src="https://d.newsweek.com/en/full/2303646/baby-goat.jpg?w=1200&f=81c50f386d0ceb2004e8b8fb063d2e9c" width="300" /> 
+    
+    
+    <p>ما شاء <span class="aljlala">الله</span> تبارك <span class="aljlala">الله</span></p>
+   
+    <button onclick="alartTime()">what time is it</button>
+    
+    <p>contant  <a href="http://192.168.1.13:8000/second%20bage%20test.html" target="_blank">me</a></p>
+
+    <button id="changeListButton" >Change list itme color and contant</button>
+
+    <ul>
+        <li>عبدالعزيز التويجري</li>
+        <li>ما شاء <span class="aljlala">الله</span> تبارك <span class="aljlala">الله</span></li>
+        <li> contant  <a href="https://www.google.com/search?q=goat" target="_blank">me</a></li>
+    </ul>
+
+    <button id="secondbutton" class="secondclass">genrate random number</button>
+
+    <script>
+        // JavaScript code goes here
+
+        function alartTime() {
+            alert("time is " + new Date().toLocaleTimeString());
+        }
+
+            const button2 = document.querySelector("#secondbutton");
+
+            const changeListButton = document.querySelector('#changeListButton');
+
+            var randomcolor = randomcolorFunction();
+            var list = [];
+            const mylist = document.querySelector('ul');
+
+
+            function addpargraf() {
+
+                const randomnumber = Math.floor(Math.random() * 100);
+                
+                const pcontant =  'the number is ' + randomnumber;
+
+                console.log(pcontant);
+
+                const newp = document.createElement('p');
+
+                newp.textContent = pcontant;
+
+                document.body.appendChild(newp);
+
+                var randomcolor = randomcolorFunction();
+                newp
+            }
+
+
+    for (let index = 0; index < mylist.children.length; index++) {
+                 list[index] = mylist.children.item(index);
+        }
+    function changeListFunction() {
+
+            ++length;
+      
+            mylist.appendChild(document.createElement('li')) 
+            
+            mylist.children.item(mylist.children.length - 1).textContent = 'new item ' + mylist.children.length;
+
+            mylist.children.item(mylist.children.length - 1).style.color = '#' + randomcolorFunction();
+
+            list[mylist.children.length - 1] = mylist.children.item(mylist.children.length - 1); 
+            
+            for (let index = 0; index < mylist.children.length -1; index++) {
+                mylist.children.item(index).style.color = '#' + randomcolorFunction();
+            }
+        }
+
+
+
+            function randomcolorFunction() {
+
+                const randomcolor = Math.floor(Math.random() * 16777215).toString(16);
+
+                return randomcolor;
+            }
+            
+            button2.onclick = addpargraf;
+
+            changeListButton.onclick = changeListFunction;
+
+        
+    </script>
+</body>
+</html>
