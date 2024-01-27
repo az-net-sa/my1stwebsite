@@ -49,6 +49,7 @@ font-family: 'Courier New', Courier, monospace;
 
     <button id="secondbutton" class="secondclass">genrate random number</button>
 
+    <button id="jokes button" onclick='addajoke()'>give me a joke</button>
     <script>
         // JavaScript code goes here
 
@@ -117,7 +118,30 @@ font-family: 'Courier New', Courier, monospace;
 
             changeListButton.onclick = changeListFunction;
 
-        
+async function makeAjoke(){
+    let ranodomJoke;
+    let url = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&format=txt&type=single';
+    try {
+        const response = await fetch(url);
+        ranodomJoke = await response.text();
+        console.log(ranodomJoke);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+    return ranodomJoke;
+}
+
+function addajoke(){
+    makeAjoke().then(joke => {
+    let myJoke = joke;
+    console.log(myJoke);
+    const newp = document.createElement('p');
+    newp.textContent = myJoke;
+    document.body.appendChild(newp);
+    
+
+    });
+}
     </script>
 </body>
 </html>
