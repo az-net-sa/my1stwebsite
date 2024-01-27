@@ -50,6 +50,23 @@ font-family: 'Courier New', Courier, monospace;
     <button id="secondbutton" class="secondclass">genrate random number</button>
 
     <button id="jokes button" onclick='addajoke()'>give me a joke</button>
+
+    <dev id="RNGContainer">
+        
+
+
+    </dev>
+
+    <dev id="jokeContainer">
+
+
+
+
+    </dev>
+
+
+
+
     <script>
         // JavaScript code goes here
 
@@ -66,7 +83,7 @@ font-family: 'Courier New', Courier, monospace;
             const mylist = document.querySelector('ul');
 
 
-            function addpargraf() {
+        function addpargraf() {
 
                 const randomnumber = Math.floor(Math.random() * 100);
                 
@@ -74,14 +91,16 @@ font-family: 'Courier New', Courier, monospace;
 
                 console.log(pcontant);
 
+                const RNGContainer = document.querySelector('#RNGContainer');
+
                 const newp = document.createElement('p');
 
                 newp.textContent = pcontant;
 
-                document.body.appendChild(newp);
+                RNGContainer.innerHTML = '';
 
-                var randomcolor = randomcolorFunction();
-                newp
+                RNGContainer.appendChild(newp);
+
             }
 
 
@@ -107,7 +126,7 @@ font-family: 'Courier New', Courier, monospace;
 
 
 
-            function randomcolorFunction() {
+    function randomcolorFunction() {
 
                 const randomcolor = Math.floor(Math.random() * 16777215).toString(16);
 
@@ -135,9 +154,11 @@ function addajoke(){
     makeAjoke().then(joke => {
     let myJoke = joke;
     console.log(myJoke);
+    const jokeContainer = document.querySelector('#jokeContainer');
     const newp = document.createElement('p');
     newp.textContent = myJoke;
-    document.body.appendChild(newp);
+    jokeContainer.innerHTML = '';
+    jokeContainer.appendChild(newp);
     
 
     });
