@@ -17,12 +17,29 @@ text-align: center;
 
 }
 
+
+
 .aljlala {
 
 color: rgb(42, 22, 173);
 font-style: bold;
 font-family: 'Courier New', Courier, monospace;
 }
+
+.box {
+
+    border: red;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 10px;
+
+}
+
+#jokeContainer {
+
+    border-width :0px;
+}
+
     </style>
 </head>
 <body>
@@ -51,18 +68,18 @@ font-family: 'Courier New', Courier, monospace;
 
     <button id="jokes button" onclick='addajoke()'>give me a joke</button>
 
-    <dev id="RNGContainer">
+    <div id="RNGContainer" class="RNGContainer box">
         
 
 
-    </dev>
+    </div>
 
-    <dev id="jokeContainer">
-
-
+    <div id="jokeContainer" class="jokeContainer box">
 
 
-    </dev>
+
+
+    </div>
 
 
 
@@ -101,6 +118,8 @@ font-family: 'Courier New', Courier, monospace;
 
                 RNGContainer.appendChild(newp);
 
+                RNGContainer.style.borderWidth = '2px';
+
             }
 
 
@@ -133,9 +152,9 @@ font-family: 'Courier New', Courier, monospace;
                 return randomcolor;
             }
             
-            button2.onclick = addpargraf;
+button2.onclick = addpargraf;
 
-            changeListButton.onclick = changeListFunction;
+changeListButton.onclick = changeListFunction;
 
 async function makeAjoke(){
     let ranodomJoke;
@@ -160,6 +179,7 @@ function addajoke(){
     jokeContainer.innerHTML = '';
     jokeContainer.appendChild(newp);
     
+    jokeContainer.style.borderWidth = '2px';
 
     });
 }
