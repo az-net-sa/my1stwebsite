@@ -1,0 +1,164 @@
+<!-- python3 -m http.server -->
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta charset="UTF-8">
+    <title>موقع عبدالعزيز</title>
+    <style>
+        /* Your CSS styles go here */
+        h1, #askMe {
+            text-align: center;
+        }
+
+        #askMe {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #askMe:hover {
+            background-color: #45a049;
+        }
+        #container {
+            align-self: right;
+            border: #45a049;
+            border-width: 2px;
+            border-style:hidden;
+    
+        }
+
+        .Ayahp{
+        color: black;
+
+
+        }
+
+        .right-align {
+            display: flex;
+            flex-direction: row;
+            align-items: right;
+            justify-content: right;
+            margin: 0 auto;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Put your HTML code here -->
+    <h1>مرحبا بكم في صفحتي</h1>
+    <button id="askMe">أعطني آيه</button>
+
+    <div id="container">
+
+
+
+
+
+    </div>
+
+    <script>
+        // Your JavaScript code goes here
+        const askMe = document.getElementById('askMe');
+        askMe.onclick = function() {
+
+            fetch('http://api.alquran.cloud/v1/quran/en')
+                .then(response => response.json())
+                .then(data => {
+                    // Process the JSON response here
+                    console.log(data);
+                    randomSurah =  77 + Math.floor(Math.random() * 37) + 1;
+                    numberOfAyahs = data.data.surahs[113].ayahs.length;
+                    randomayah = Math.floor(Math.random() * numberOfAyahs);
+                    text = data.data.surahs[randomSurah].ayahs[randomayah].text;
+                    if (text.includes("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ")) {
+                        text = text.replace("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ", "");
+                    }
+
+                rightanswer = data.data.surahs[randomSurah].name;
+                randomSurah =  77 + Math.floor(Math.random() * 37) + 1;
+                wronganswer1 = data.data.surahs[randomSurah].name;
+                randomSurah =  77 + Math.floor(Math.random() * 37) + 1;
+                wronganswer2 = data.data.surahs[randomSurah].name;
+
+
+                const container = document.querySelector('#container');
+                const Ayahp = document.createElement('p');
+                Ayahp.style.textAlign = 'right';
+                Ayahp.textContent = text;
+                Ayahp.classList.add('Ayahp');
+                container.innerHTML = '';
+                container.appendChild(Ayahp);
+
+
+
+                const answers = [rightanswer, wronganswer1, wronganswer2];
+                answers.sort(() => Math.random() - 0.5);
+
+                for (let i = 0; i < answers.length; i++) {
+                    let answer = document.createElement('button');
+                    answer.textContent = answers[i];
+                    answer.style.textAlign = 'right';
+                    answer.style.backgroundColor = 'blue';
+                    answer.classList.add('right-align'); 
+                    container.appendChild(answer);
+                }
+
+                })
+
+
+
+
+
+                .catch(error => {
+                    // Handle any errors here
+                    console.error(error);
+                });         
+
+
+            }
+                /*
+                code : 200
+                status : "OK"
+                data : {
+                    surahs : [
+                        0 : ....
+                        1 : ....
+                        114 : {
+                            name : 'الناس'
+                            ayahs : [
+                                0 : {
+                                    number : 1
+                                    text : 'قل أعوذ برب الناس'
+                                    numberInSurah : 1
+                                    juz : 30
+                                    manzil : 7
+                                    page : 604
+                                    ruku : 1
+                                    hizbQuarter : 1
+                                    sajda : false
+                                }
+                            ]
+
+
+                        }
+
+
+                    }
+
+
+                }
+                
+
+                */
+              
+        
+       
+    </script>
+</body>
+</html>
+
