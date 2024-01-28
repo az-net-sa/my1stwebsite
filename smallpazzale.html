@@ -51,7 +51,7 @@
 <body>
     <!-- Put your HTML code here -->
     <h1>مرحبا بكم في صفحتي</h1>
-    <button id="askMe">أعطني آيه</button>
+    <button id="askMe" onclick="askmepleae()">أعطني آيه</button>
 
     <div id="container">
 
@@ -63,8 +63,8 @@
 
     <script>
         // Your JavaScript code goes here
-        const askMe = document.getElementById('askMe');
-        askMe.onclick = function() {
+
+        function askmepleae() {
 
             fetch('http://api.alquran.cloud/v1/quran/en')
                 .then(response => response.json())
