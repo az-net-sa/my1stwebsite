@@ -79,38 +79,49 @@
                         text = text.replace("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ", "");
                     }
 
-                rightanswer = data.data.surahs[randomSurah].name;
-                randomSurah =  77 + Math.floor(Math.random() * 37) + 1;
-                wronganswer1 = data.data.surahs[randomSurah].name;
-                randomSurah =  77 + Math.floor(Math.random() * 37) + 1;
-                wronganswer2 = data.data.surahs[randomSurah].name;
-
-
                 const container = document.querySelector('#container');
                 const Ayahp = document.createElement('p');
                 Ayahp.style.textAlign = 'right';
                 Ayahp.textContent = text;
                 Ayahp.classList.add('Ayahp');
                 container.innerHTML = '';
-                container.appendChild(Ayahp);
+                container.appendChild(Ayahp);    
 
 
+                rightanswer = data.data.surahs[randomSurah].name;
 
-                const answers = [rightanswer, wronganswer1, wronganswer2];
-                answers.sort(() => Math.random() - 0.5);
+                numberOFwrongeAnswers = 3;
+                wronganswers = []; // Initialize the wronganswers array
+                for (i = 0 ; i < numberOFwrongeAnswers; i++) {
+                    randomSurah =  77 + Math.floor(Math.random() * 37) + 1;
+                    wronganswers[i] = data.data.surahs[randomSurah].name;
+                }
 
-                for (let i = 0; i < answers.length; i++) {
+                answers = [];
+                answers[0] = rightanswer;
+                const wrongeAnswers = numberOFwrongeAnswers; // Add missing variable declaration
+                for (let i = 1; i < wrongeAnswers + 1; i++){ // Correct the loop condition
+                    answers[i] = wronganswers[i-1]; 
+                } 
+
+               answers.sort(() => Math.random() - 0.5);
+
+                for (let i = 0; i < answers.length ; i++) {
                     let answer = document.createElement('button');
                     answer.textContent = answers[i];
                     answer.style.textAlign = 'right';
                     answer.style.backgroundColor = 'blue';
-                    answer.classList.add('right-align'); 
+                    answer.classList.add('right-align');
+                    answer.onclick = function() {
+                        checkanswer(answers[i]);
+                    }
+                    
                     container.appendChild(answer);
                 }
 
                 })
 
-
+                
 
 
 
@@ -121,6 +132,16 @@
 
 
             }
+
+            function checkanswer(answer) {
+                    if (answer == rightanswer) {
+                        alert("إجابة صحيحة بارك الله فيك");
+                    } else {
+                        alert("إحابة خاطئة هداك الله. لا بأس حاول مرة أخرى");
+                    }
+
+                }
+            
                 /*
                 code : 200
                 status : "OK"
