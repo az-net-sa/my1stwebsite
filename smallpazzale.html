@@ -63,7 +63,8 @@
 
     <script>
         // Your JavaScript code goes here
-
+        min = 100;
+        max = 113;
         function askmepleae() {
 
             fetch('https://abdulazizdev.xyz/en.json')
@@ -71,23 +72,23 @@
                 .then(data => {
                     // Process the JSON response here
                     console.log(data);
-                    randomSurah =  77 + Math.floor(Math.random() * 37) + 1;
+                    randomSurah =  randomNumber(min, max);
                     numberOfAyahs = data.data.surahs[113].ayahs.length;
                     randomayah = Math.floor(Math.random() * numberOfAyahs);
-                    text = data.data.surahs[randomSurah].ayahs[randomayah].text;
-                    if (text.includes("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ")) {
-                        text = text.replace("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ", "");
+                    ayah = data.data.surahs[randomSurah].ayahs[randomayah].text;
+                    if (ayah.includes("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ")) {
+                        ayah = ayah.replace("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ", "");
                     }
 
                 const container = document.querySelector('#container');
                 const Ayahp = document.createElement('p');
                 Ayahp.style.textAlign = 'right';
-                Ayahp.textContent = text;
+                Ayahp.textContent = ayah;
                 Ayahp.classList.add('Ayahp');
                 Ayahp.style.fontSize = '30px';
                 Ayahp.style.fontWeight = 'bold';
                 Ayahp.style.fontFamily = 'Arial';
-                Ayahp.style.textAlign = 'center';    
+                Ayahp.style.textAlign = 'center';
                 container.innerHTML = '';
                 container.appendChild(Ayahp);    
 
@@ -97,9 +98,14 @@
                 numberOFwrongeAnswers = 3;
                 wronganswers = []; // Initialize the wronganswers array
                 for (i = 0 ; i < numberOFwrongeAnswers; i++) {
-                    randomSurah =  77 + Math.floor(Math.random() * 37) + 1;
-                    wronganswers[i] = data.data.surahs[randomSurah].name;
-                }
+                    randomSurah = randomNumber(min, max);
+                    if (data.data.surahs[randomSurah].ayahs[randomayah].text.includes(ayah) ) { // make sure there is no two right answers or duplicates
+                    --i;
+                    continue;
+                    } else { 
+                         wronganswers[i] = data.data.surahs[randomSurah].name;
+                            }
+                                                             }
 
                 answers = [];
                 answers[0] = rightanswer;
@@ -118,8 +124,9 @@
                     answer.style.color = 'white';
                     answer.classList.add('right-align');
                     answer.onclick = function() {
-                        checkanswer(answers[i]);
+                        checkanswer(answers[i], answer);
                     }
+                    answer.style.fontSize = '17px';
                     
                     container.appendChild(answer);
                 }
@@ -138,12 +145,15 @@
 
             }
 
-            function checkanswer(answer) {
+            function checkanswer(answer , thisAnswer) {
                     if (answer == rightanswer) {
+                        thisAnswer.style.backgroundColor = 'green';
                         alert("إجابة صحيحة بارك الله فيك");
-                    } else {
+                        } else {
+                            thisAnswer.style.backgroundColor = 'red';
+
                         alert("إحابة خاطئة هداك الله. لا بأس حاول مرة أخرى");
-                    }
+                        }
 
                 }
             
@@ -182,7 +192,9 @@
 
                 */
               
-        
+    function randomNumber(min, max) {  
+        return Math.floor(Math.random() * (max - min) + min); 
+    }    
        
     </script>
 </body>
