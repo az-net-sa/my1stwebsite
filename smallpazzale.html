@@ -63,7 +63,7 @@
 
     <script>
         // Your JavaScript code goes here
-        min = 60
+        min = 1
         max = 114;
         function askmepleae() {
 
@@ -145,6 +145,7 @@
                     answer.style.backgroundColor = 'blue';
                     answer.style.color = 'white';
                     answer.classList.add('right-align');
+                    answer.classList.add('answerbutton');
                     answer.onclick = function() {
                         checkanswer(answers[i], answer);
                     }
@@ -171,6 +172,11 @@
                     if (answer == rightanswer) {
                         thisAnswer.style.backgroundColor = 'green';
                         alert("إجابة صحيحة بارك الله فيك");
+                        const answerbutton = document.querySelectorAll('.answerbutton');
+                        answerbutton.forEach(element => {
+                            element.disabled = true;
+                        });
+                        
                         } else {
                             thisAnswer.style.backgroundColor = 'red';
 
