@@ -63,7 +63,7 @@
 
     <script>
         // Your JavaScript code goes here
-        min = 90
+        min = 60
         max = 114;
         function askmepleae() {
 
@@ -73,6 +73,8 @@
                     // Process the JSON response here
                     console.log(data);
                     randomSurah =  randomNumber(min, max);
+                    rightanswernumber = randomSurah;
+
                     numberOfAyahs = data.data.surahs[randomSurah].ayahs.length;
                     randomayah = randomNumber(1, numberOfAyahs - 1);
 
@@ -101,13 +103,18 @@
                 numberOFwrongeAnswers = 3;
                 wronganswers = []; // Initialize the wronganswers array
                 for (i = 0 ; i < numberOFwrongeAnswers; i++) {
-                    randomSurah = randomNumber(min, max);
-                    if (data.data.surahs[randomSurah].ayahs.length == numberOfAyahs){
-                        if (data.data.surahs[randomSurah].ayahs[randomayah].text.includes(ayah) ) { // make sure there is no two right answers
+                    minWrong = rightanswernumber - 8 < min ? min : rightanswernumber - randomNumber(3 , 8);
+                    maxWrong = rightanswernumber + 8 > max ? max : rightanswernumber + randomNumber(3 , 8);
+                    console.log('minWrong', minWrong, 'maxWrong', maxWrong);
+                    
+                    randomSurah = randomNumber(minWrong, maxWrong);
+
+
+                    if (data.data.surahs[randomSurah].ayahs.length == numberOfAyahs && data.data.surahs[randomSurah].ayahs[randomayah].text.includes(ayah) ){ // make sure there is no two right answers
                             --i;
                             continue; 
                             console.log('right answer duplecet skiped');
-                                     }
+                                     
                     } 
                         if (wronganswers.includes(data.data.surahs[randomSurah].name)){ // to avoid duplicates wrong answers  
                             i --;
