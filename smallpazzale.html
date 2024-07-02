@@ -34,16 +34,32 @@
 
         .Ayahp{
         color: black;
-
+        font-size : 25px;
+        font-weight : bold;
+        text-align: center;
 
         }
 
-        .right-align {
-            display: flex;
-            flex-direction: row;
-            align-items: right;
-            justify-content: right;
-            margin: 0 auto;
+        .answerbutton {
+            display:inline-block; ;
+            padding: 10px;
+            width: 34%;
+            text-align: center;
+            cursor: pointer;
+            margin: 2px;
+            border-radius: 8px;
+            background-color: blue;
+            color: white;
+            font-size: 16px;
+            align-items: center;
+
+}
+
+        
+
+        .container {
+            background-color: rgb(243, 10, 84);
+            border: 1px solid black;
         }
         
     </style>
@@ -87,15 +103,10 @@
 
                 const container = document.querySelector('#container');
                 const Ayahp = document.createElement('p');
-                Ayahp.style.textAlign = 'right';
                 Ayahp.textContent = ayah;
-                Ayahp.classList.add('Ayahp');
-                Ayahp.style.fontSize = '30px';
-                Ayahp.style.fontWeight = 'bold';
-                Ayahp.style.fontFamily = 'Arial';
-                Ayahp.style.textAlign = 'center';
                 container.innerHTML = '';
                 container.appendChild(Ayahp);    
+                Ayahp.classList.add('Ayahp');
 
 
                 rightanswer = data.data.surahs[randomSurah].name;
@@ -141,15 +152,10 @@
                 for (let i = 0; i < answers.length ; i++) {
                     let answer = document.createElement('button');
                     answer.textContent = answers[i];
-                    answer.style.textAlign = 'right';
-                    answer.style.backgroundColor = 'blue';
-                    answer.style.color = 'white';
-                    answer.classList.add('right-align');
                     answer.classList.add('answerbutton');
                     answer.onclick = function() {
-                        checkanswer(answers[i], answer);
+                    checkanswer(answers[i], answer);
                     }
-                    answer.style.fontSize = '17px';
                     
                     container.appendChild(answer);
                 }
@@ -180,8 +186,9 @@
                         } else {
                             thisAnswer.style.backgroundColor = 'red';
                             thisAnswer.disabled = true;
-                            alert("إحابة خاطئة هداك الله. لا بأس حاول مرة أخرى");
-                            }
+
+                        alert("إحابة خاطئة هداك الله. لا بأس حاول مرة أخرى");
+                        }
 
                 }
             
@@ -227,4 +234,3 @@
     </script>
 </body>
 </html>
-
