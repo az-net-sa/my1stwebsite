@@ -1,4 +1,3 @@
-<!-- python3 -m http.server -->
 <!DOCTYPE html>
 <html>
 <head> 
@@ -24,13 +23,6 @@
         #askMe:hover {
             background-color: #45a049;
         }
-        #container {
-            align-self: right;
-            border: #45a049;
-            border-width: 2px;
-            border-style:hidden;
-    
-        }
 
         .Ayahp{
         color: black;
@@ -53,13 +45,25 @@
             font-size: 16px;
             align-items: center;
 
+
 }
 
         
 
-        .container {
+        #AyahContainer {
             background-color: rgb(243, 10, 84);
-            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+
+        }
+
+        #answerContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 3px;
+            background-color: rgb(10, 76, 169);
         }
         
     </style>
@@ -69,10 +73,15 @@
     <h1> اعرف السورة من الآية</h1>
     <button id="askMe" onclick="askmepleae()">أعطني آيه</button>
 
-    <div id="container">
+    <div id="AyahContainer">
 
 
 
+
+
+    </div>
+
+    <div id="answerContainer">
 
 
     </div>
@@ -101,11 +110,11 @@
                         ayah = ayah.replace("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ", "");
                     }
 
-                const container = document.querySelector('#container');
+                const AyahContainer = document.querySelector('#AyahContainer');
                 const Ayahp = document.createElement('p');
                 Ayahp.textContent = ayah;
-                container.innerHTML = '';
-                container.appendChild(Ayahp);    
+                AyahContainer.innerHTML = '';
+                AyahContainer.appendChild(Ayahp);    
                 Ayahp.classList.add('Ayahp');
 
 
@@ -148,6 +157,8 @@
                 } 
 
                answers.sort(() => Math.random() - 0.5);
+               const answerContainer = document.querySelector('#answerContainer');
+                answerContainer.innerHTML = '';
 
                 for (let i = 0; i < answers.length ; i++) {
                     let answer = document.createElement('button');
@@ -156,8 +167,7 @@
                     answer.onclick = function() {
                     checkanswer(answers[i], answer);
                     }
-                    
-                    container.appendChild(answer);
+                    answerContainer.appendChild(answer);
                 }
 
                 })
