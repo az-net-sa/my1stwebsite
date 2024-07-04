@@ -76,6 +76,23 @@
 <body>
     <!-- Put your HTML code here -->
     <h1> اعرف السورة من الآية</h1>
+    <select name="SelectLevel" id="SelectLevel" > 
+        <option value="0" >جزء عم</option>
+        <option value="1" >العشر الأخير</option>
+        <option value="2" >الخمس الأخير</option>
+        <option value="3" >الثلث الأخير</option>
+        <option value="4" >النصف الأخير</option>
+        <option value="5" >القرآن كاملا</option>
+
+
+    </select>
+    <select name="SelectOptions" id="SelectOptions">
+        <option value="3">ثلاث خيارات</option>
+        <option value="4">أربع خيارات</option>
+        <option value="5">خمس خيارات</option>
+        <option value="6">ست خيارات</option>
+
+    </select>
     <button id="askMe" onclick="askmepleae()">أعطني آيه</button>
 
     <div id="AyahContainer">
@@ -93,10 +110,49 @@
 
     <script>
         // Your JavaScript code goes here
-        min = 1
+
+        var Rangebox = document.getElementById("SelectLevel");
+        var numberOfOptionsbox = document.getElementById("SelectOptions");
+        var numberOfOptions = 4;
+
+        function UpdateRange() {
+        var range = Rangebox.value;
+        
+        switch (range) {
+            case "0":
+                min = 78;
+                break;
+            case "1":
+                min = 58;
+                break;
+            case "2":
+                min = 42;
+                break;
+            case "3":
+                min = 29;
+                break;
+            case "4":
+                min = 19;
+                break;
+            case "5":
+                min = 1;
+                break;
+            default:
+                min = 1;
+                break;
+        }
+        }
+        function updateNumberOfOptions() {
+            var numberOfOptions = numberOfOptionsbox.value;
+            console.log('numberOfOptions', numberOfOptions);
+            return numberOfOptions;
+        }
         max = 114;
         function askmepleae() {
-
+            UpdateRange();
+            numberOfOptions = updateNumberOfOptions();
+            console.log('min', min);
+            console.log('max', max);
             fetch('https://abdulaziz0.sa/en.json')
                 .then(response => response.json())
                 .then(data => {
@@ -124,8 +180,7 @@
 
 
                 rightanswer = data.data.surahs[randomSurah].name;
-
-                numberOFwrongeAnswers = 3;
+                numberOFwrongeAnswers = numberOfOptions - 1;
                 wronganswers = []; // Initialize the wronganswers array
                 for (i = 0 ; i < numberOFwrongeAnswers; i++) {
                     minWrong = rightanswernumber - 8 < min ? min : rightanswernumber - randomNumber(3 , 8);
