@@ -2,10 +2,34 @@
 <!DOCTYPE html>
 <html>
 <head> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <title>موقع عبدالعزيز</title>
     <style>
         /* Your CSS styles go here */
+        @font-face {
+            font-family: naskh;
+            src: url(sources/UthmanTN.ttf);
+        }
+        @font-face {
+            font-family: naskhBold;
+            src: url(sources/UthmanTNB.ttf);
+        }
+        @font-face {
+            font-family: Symbols1;
+            src: url(sources/Symbols1.otf);
+        }
+        /* 
+        source :https://fonts.qurancomplex.gov.sa/wp02/%d8%a7%d9%84%d9%85%d8%af%d8%b1%d8%ac%d8%a7%d8%aa/
+        */
+
+        h1 {
+            text-align: center;
+            font-family: Mysymbols;
+        }
         h1, #askMe {
             text-align: center;
         }
@@ -25,12 +49,22 @@
             background-color: #45a049;
         }
 
-        .Ayahp{
+        .basmlahp{
         color: black;
-        font-size : 25px;
-        font-weight : bold;
         text-align: center;
         margin: 30px 25px 30px 25px;
+        font-family: Symbols1 ;
+        font-size : 50px;
+        font-weight: 1000;
+        }
+
+        .Ayahp{
+        color: black;
+        text-align: center;
+        margin: 30px 25px 30px 25px;
+        font-family: naskh;
+        font-size : 25px;
+        font-weight: 1000;
 
         }
 
@@ -57,7 +91,6 @@
 
         #AyahContainer {
             background-color: rgb(243, 10, 84);
-            display: flex;
             justify-content: center;
             margin-top: 10px;
 
@@ -67,7 +100,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 3px;
+            margin-top: -22px;
             background-color: rgb(35, 87, 161);
         }
         
@@ -75,7 +108,7 @@
 </head>
 <body>
     <!-- Put your HTML code here -->
-    <h1> اعرف السورة من الآية</h1>
+    <h1>  اعرف السورة من الآية</h1>
     <select name="SelectLevel" id="SelectLevel" > 
         <option value="0" >جزء عم</option>
         <option value="1" >العشر الأخير</option>
@@ -172,10 +205,14 @@
                     }
 
                 const AyahContainer = document.querySelector('#AyahContainer');
+                const basmlah = document.createElement('p');
+                basmlah.textContent = '!' ; // "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
                 const Ayahp = document.createElement('p');
-                Ayahp.textContent = ayah;
+                Ayahp.textContent = "﴾ " + ayah + " ﴿";
                 AyahContainer.innerHTML = '';
-                AyahContainer.appendChild(Ayahp);    
+                AyahContainer.appendChild(basmlah);
+                AyahContainer.appendChild(Ayahp); 
+                basmlah.classList.add('basmlahp');   
                 Ayahp.classList.add('Ayahp');
 
 
