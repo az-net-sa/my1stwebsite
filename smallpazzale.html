@@ -161,7 +161,7 @@
             <option value="6">ست خيارات</option>
     
         </select>
-        <button id="askMe" onclick="askmepleae()">أعطني آيه</button>
+        <button id="askMe" onclick="askmepleae()" >أعطني آيه</button>
     
 
     </div>
@@ -190,7 +190,7 @@
         var Rangebox = document.getElementById("SelectLevel");
         var numberOfOptionsbox = document.getElementById("SelectOptions");
         var numberOfOptions = 4;
-        var barSpeed = 7;
+        var barSpeed = 8;
         const askmebutton = document.getElementById("askMe");
         const barContainer = document.getElementById("bar-container");
         const answerbutton = document.querySelectorAll('.answerbutton');
@@ -219,20 +219,22 @@
                 if (UserGotItRight) {
                     askmepleae();
                     UserGotItRight = false;
+                    barSpeed /= 1.5;
                 } else {
                     alert('لقد انتهى الوقت');
                     askmeContiner.style.display = 'block';
                     const answerbutton = document.querySelectorAll('.answerbutton');
                     answerbutton.forEach(element => {
                         element.disabled = true;
+
                     });
+                    barSpeed = 8;
                 }
 
             }
         }, 1)
        
         }
-
         
         
         function UpdateRange() {
@@ -271,7 +273,6 @@
         function askmepleae() {
             askmeContiner.style.display = 'none';
             askmebutton.disabled = true;
-            barSpeed = 8;
             bar();
             UpdateRange();
             numberOfOptions = updateNumberOfOptions();
@@ -383,6 +384,7 @@
                         answerbutton.forEach(element => {
                             element.disabled = true;
                         });
+                        i = 66 * barSpeed;
                         
                         } else {
                             thisAnswer.style.backgroundColor = 'red';
