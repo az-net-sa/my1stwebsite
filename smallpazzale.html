@@ -143,24 +143,28 @@
 <body>
     <!-- Put your HTML code here -->
     <h1>  اعرف السورة من الآية</h1>
-    <select name="SelectLevel" id="SelectLevel" > 
-        <option value="0" >جزء عم</option>
-        <option value="1" >العشر الأخير</option>
-        <option value="2" >الخمس الأخير</option>
-        <option value="3" >الثلث الأخير</option>
-        <option value="4" >النصف الأخير</option>
-        <option value="5" >القرآن كاملا</option>
+    <div id="askmeContiner">
+        <select name="SelectLevel" id="SelectLevel" > 
+            <option value="0" >جزء عم</option>
+            <option value="1" >العشر الأخير</option>
+            <option value="2" >الخمس الأخير</option>
+            <option value="3" >الثلث الأخير</option>
+            <option value="4" >النصف الأخير</option>
+            <option value="5" >القرآن كاملا</option>
+    
+    
+        </select>
+        <select name="SelectOptions" id="SelectOptions">
+            <option value="3">ثلاث خيارات</option>
+            <option value="4">أربع خيارات</option>
+            <option value="5">خمس خيارات</option>
+            <option value="6">ست خيارات</option>
+    
+        </select>
+        <button id="askMe" onclick="askmepleae()">أعطني آيه</button>
+    
 
-
-    </select>
-    <select name="SelectOptions" id="SelectOptions">
-        <option value="3">ثلاث خيارات</option>
-        <option value="4">أربع خيارات</option>
-        <option value="5">خمس خيارات</option>
-        <option value="6">ست خيارات</option>
-
-    </select>
-    <button id="askMe" onclick="askmepleae()">أعطني آيه</button>
+    </div>
 
     <div id="AyahContainer">
 
@@ -188,6 +192,11 @@
         var numberOfOptions = 4;
         var barSpeed = 1;
         const askmebutton = document.getElementById("askMe");
+        const barContainer = document.getElementById("bar-container");
+        const answerbutton = document.querySelectorAll('.answerbutton');
+        const askmeContiner = document.getElementById("askmeContiner");
+        var UserGotItRight = false;
+        barContainer.style.display = 'none';
 
         // testing the bar
         var barDiv = document.getElementById("bar");
@@ -197,7 +206,7 @@
             setTimeout(function() {   //  call a 3s setTimeout when the loop is called
               barDiv.style.width = (i/ barSpeed * 1.55) + '%';
               i++;                    //  increment the counter
-              
+
  
             if (i < (66 * barSpeed)) {           //  if the counter < 10, call the loop function
             bar();             //  ..  again which will trigger another 
@@ -207,6 +216,17 @@
                 i = 0;
                 barDiv.style.width = '0%';
                 askmebutton.disabled = false;
+                if (UserGotItRight) {
+                    askmepleae();
+                    UserGotItRight = false;
+                } else {
+                    alert('لقد انتهى الوقت');
+                    askmeContiner.style.display = 'block';
+                    const answerbutton = document.querySelectorAll('.answerbutton');
+                    answerbutton.forEach(element => {
+                        element.disabled = true;
+                    });
+                }
 
             }
         }, 1)
@@ -249,8 +269,9 @@
         }
         max = 114;
         function askmepleae() {
+            askmeContiner.style.display = 'none';
             askmebutton.disabled = true;
-            barSpeed = 3;
+            barSpeed = 8;
             bar();
             UpdateRange();
             numberOfOptions = updateNumberOfOptions();
@@ -336,6 +357,8 @@
                     }
                     answerContainer.appendChild(answer);
                 }
+                barContainer.style.display = 'flex';
+
 
                 })
 
@@ -355,6 +378,7 @@
                     if (answer == rightanswer) {
                         thisAnswer.style.backgroundColor = 'green';
                         alert("إجابة صحيحة بارك الله فيك");
+                        UserGotItRight = true;
                         const answerbutton = document.querySelectorAll('.answerbutton');
                         answerbutton.forEach(element => {
                             element.disabled = true;
@@ -365,6 +389,7 @@
                             thisAnswer.disabled = true;
 
                         alert("إحابة خاطئة هداك الله. لا بأس حاول مرة أخرى");
+                        userGotItRight = false;
                         }
 
                 }
