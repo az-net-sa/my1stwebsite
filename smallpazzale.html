@@ -231,7 +231,25 @@
                     UserGotItRight = false;
                     barSpeed /= 1.5;
                 } else {
-                    alert('لقد انتهى الوقت' + ' الإجابة الصحيحة هي : ' + rightanswer + ' كسبت ' + score + ' نقاط');
+                    switch (true) {
+                        case (score === 0):
+                            alert('،لقد انتهى الوقت' + ' الإجابة الصحيحة هي : ' + rightanswer + '، لم تكسب أي نقطة ');
+                            break;
+                        case (score === 1):
+                            alert('،لقد انتهى الوقت' + ' الإجابة الصحيحة هي : ' + rightanswer + '، كسبت نقطة واحدة ');
+                            break;
+                        case (score === 2):
+                            alert('،لقد انتهى الوقت' + ' الإجابة الصحيحة هي : ' + rightanswer + '، كسبت نقطتان ');
+                            break;
+                        case (score > 2 && score < 11):
+                            alert('،لقد انتهى الوقت' + ' الإجابة الصحيحة هي : ' + rightanswer + '، كسبت ' + score + ' نقاط');
+                            break;
+                        case (score > 10):
+                            alert('،لقد انتهى الوقت' + ' الإجابة الصحيحة هي : ' + rightanswer + '، كسبت ' + score + ' نقطة، أبدعت!');
+                            break;
+                    }
+
+
                     askmeContiner.style.display = 'block';
                     const answerbutton = document.querySelectorAll('.answerbutton');
                     answerbutton.forEach(element => {
