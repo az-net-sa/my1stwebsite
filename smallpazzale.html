@@ -161,6 +161,14 @@
             <option value="6">ست خيارات</option>
     
         </select>
+
+        <select name="selectTime" id="selectTime">
+            <option value="5">5 ثواني</option>
+            <option value="10">10 ثواني</option>
+            <option value="15">15 ثانية</option>
+            <option value="20">20 ثانية</option>
+    
+        </select>
         <button id="askMe" onclick="askmepleae()" >أعطني آيه</button>
     
 
@@ -190,14 +198,16 @@
         var Rangebox = document.getElementById("SelectLevel");
         var numberOfOptionsbox = document.getElementById("SelectOptions");
         var numberOfOptions = 4;
-        var barSpeed = 24;
+        var barSpeed = 0;
+        var score = 0;
         const askmebutton = document.getElementById("askMe");
         const barContainer = document.getElementById("bar-container");
         const answerbutton = document.querySelectorAll('.answerbutton');
         const askmeContiner = document.getElementById("askmeContiner");
+        const Timebox = document.getElementById("selectTime");
         var UserGotItRight = false;
         barContainer.style.display = 'none';
-
+        reSetBarSpeed();
         // testing the bar
         var barDiv = document.getElementById("bar");
         barDiv.style.width = '0%';
@@ -221,14 +231,15 @@
                     UserGotItRight = false;
                     barSpeed /= 1.5;
                 } else {
-                    alert('لقد انتهى الوقت');
+                    alert('لقد انتهى الوقت' + ' الإجابة الصحيحة هي : ' + rightanswer + ' كسبت ' + score + ' نقاط');
                     askmeContiner.style.display = 'block';
                     const answerbutton = document.querySelectorAll('.answerbutton');
                     answerbutton.forEach(element => {
                         element.disabled = true;
 
                     });
-                    barSpeed = 24;
+                    score = 0;
+                    reSetBarSpeed();
                 }
 
             }
@@ -236,7 +247,16 @@
        
         }
         
-        
+        function reSetBarSpeed() {
+            if (window.innerWidth > 550) {
+                barSpeed = parseInt(Timebox.value);
+            } else {
+                barSpeed = parentInt(Timebox.value) * 3;
+            }
+            Timebox.onchange = reSetBarSpeed;
+
+
+        }
         function UpdateRange() {
         var range = Rangebox.value;
         
@@ -378,7 +398,7 @@
             function checkanswer(answer , thisAnswer) {
                     if (answer == rightanswer) {
                         thisAnswer.style.backgroundColor = 'green';
-                        alert("إجابة صحيحة بارك الله فيك");
+                        score ++;
                         UserGotItRight = true;
                         const answerbutton = document.querySelectorAll('.answerbutton');
                         answerbutton.forEach(element => {
@@ -390,8 +410,8 @@
                             thisAnswer.style.backgroundColor = 'red';
                             thisAnswer.disabled = true;
 
-                        alert("إحابة خاطئة هداك الله. لا بأس حاول مرة أخرى");
                         userGotItRight = false;
+                        i += 20 * barSpeed;
                         }
 
                 }
