@@ -1,0 +1,129 @@
+
+/* Your CSS styles go here */
+@font-face {
+    font-family: naskh;
+    src: url(/sources/UthmanTN.ttf);
+}
+@font-face {
+    font-family: naskhBold;
+    src: url(/sources/UthmanTNB.ttf);
+}
+@font-face {
+    font-family: Symbols1;
+    src: url(/sources/Symbols1.otf);
+}
+/* 
+source :https://fonts.qurancomplex.gov.sa/wp02/%d8%a7%d9%84%d9%85%d8%af%d8%b1%d8%ac%d8%a7%d8%aa/
+*/
+
+h1 {
+    text-align: center;
+    font-family: Mysymbols;
+}
+h1, #askMe {
+    text-align: center;
+}
+
+#askMe {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#askMe:hover {
+    background-color: #45a049;
+}
+
+.basmlahp{
+color: black;
+text-align: center;
+margin: 30px 25px 30px 25px;
+font-family: Symbols1 ;
+font-size : 50px;
+font-weight: 1000;
+}
+
+.Ayahp{
+color: black;
+text-align: center;
+margin: 30px 25px 30px 25px;
+font-family: naskh;
+font-size : 25px;
+font-weight: 1000;
+
+}
+
+.answerbutton {
+    display:inline-block; ;
+    padding: 10px;
+    width: 34%;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: blue;
+    color: white;
+    font-size: 16px;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+
+}
+.answerbutton:hover {
+    background-color: rgb(50, 50, 255);
+}
+
+
+#AyahContainer {
+    background-color: rgb(243, 10, 84);
+    justify-content: center;
+    margin-top: 10px;
+
+}
+
+#answerContainer {
+    background-color: rgb(35, 87, 161);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -22px;
+}
+
+#bar-container {
+    display: flex;
+    margin-top : 30px;
+    width: 100%;
+    background-color: #080101;
+    height: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+#bar {
+    background-color: #45a049;
+    height: 65%;
+    width : 0%;
+    margin: 5px;
+    border-radius: 12px;
+}
+
+@media only screen
+and (min-width: 550px) { 
+/* For disktops with screen size 550px or more */
+    .Ayahp  {
+        font-size: 40px;
+    }
+    .basmlahp {
+        font-size: 75px;
+    }
+    
+}
+
+
