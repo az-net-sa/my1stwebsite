@@ -1,5 +1,4 @@
 
-/* Your CSS styles go here */
 @font-face {
     font-family: naskh;
     src: url(/sources/UthmanTN.ttf);
@@ -15,9 +14,11 @@
 /* 
 source :https://fonts.qurancomplex.gov.sa/wp02/%d8%a7%d9%84%d9%85%d8%af%d8%b1%d8%ac%d8%a7%d8%aa/
 */
+body {
+    background-color: #1c1c1c;
 
+}
 h1 {
-    text-align: center;
     font-family: Mysymbols;
 }
 h1, #askMe {
@@ -40,21 +41,20 @@ h1, #askMe {
 }
 
 .basmlahp{
-color: black;
 text-align: center;
 margin: 30px 25px 30px 25px;
 font-family: Symbols1 ;
-font-size : 50px;
-font-weight: 1000;
+font-size : 60px;
+font-weight: 50;
+
 }
 
 .Ayahp{
-color: black;
 text-align: center;
 margin: 30px 25px 30px 25px;
 font-family: naskh;
 font-size : 25px;
-font-weight: 1000;
+font-weight: 800;
 
 }
 
@@ -80,9 +80,10 @@ font-weight: 1000;
 
 
 #AyahContainer {
-    background-color: rgb(243, 10, 84);
+    background-color: rgb(47, 47, 47);
     justify-content: center;
     margin-top: 10px;
+    color: #ffffff;
 
 }
 
