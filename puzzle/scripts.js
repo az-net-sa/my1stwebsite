@@ -191,6 +191,7 @@ function askmepleae() {
 
        answers.sort(() => Math.random() - 0.5);
        answerContainer.innerHTML = '';
+       AyahContainer.style.visibility = 'visible';
        answerContainer.style.visibility = 'visible';
 
 
