@@ -68,7 +68,7 @@ h1, #askMe {
 #askMe {
     display: block;
     margin: 0 auto;
-    padding: 50px 90px;
+    padding: 40px 140px;
     background-color: #1a2028;
     color: white;
     border: none;
@@ -87,7 +87,7 @@ h1, #askMe {
 text-align: center;
 margin: 0px 80px 20px 80px;
 font-family: Symbols1 ;
-font-size : 60px;
+font-size : 75px;
 font-weight: 50;;
 }
 
@@ -95,7 +95,7 @@ font-weight: 50;;
 text-align: center;
 margin: 0px 25px 30px 25px;
 font-family: naskh;
-font-size : 25px;
+font-size : 32px;
 font-weight: 800;
 
 }
@@ -121,9 +121,6 @@ font-weight: 800;
     background-color: #393E46;
     
 }
-
-
-
 
 #bar-container {
     display: flex;
