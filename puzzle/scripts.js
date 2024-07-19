@@ -11,6 +11,7 @@ const barContainer = document.getElementById("bar-container");
 const answerbutton = document.querySelectorAll('.answerbutton');
 const askmeContiner = document.getElementById("askmeContiner");
 const Timebox = document.getElementById("selectTime");
+const answerContainer = document.getElementById("answerContainer");
 var UserGotItRight = false;
 barContainer.style.display = 'none';
 reSetBarSpeed();
@@ -75,12 +76,11 @@ function reSetBarSpeed() {
     if (window.innerWidth > 550) {
         barSpeed = parseInt(Timebox.value);
     } else {
-        barSpeed = parentInt(Timebox.value) * 3;
+        barSpeed = parseInt(Timebox.value) * 3;
     }
-    Timebox.onchange = reSetBarSpeed;
-
 
 }
+Timebox.onchange = reSetBarSpeed;
 function UpdateRange() {
 var range = Rangebox.value;
 
@@ -190,8 +190,9 @@ function askmepleae() {
         } 
 
        answers.sort(() => Math.random() - 0.5);
-       const answerContainer = document.querySelector('#answerContainer');
-        answerContainer.innerHTML = '';
+       answerContainer.innerHTML = '';
+       answerContainer.style.visibility = 'visible';
+
 
         for (let i = 0; i < answers.length ; i++) {
             let answer = document.createElement('button');
