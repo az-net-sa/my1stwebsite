@@ -127,7 +127,7 @@ function askmepleae() {
         .then(data => {
             // Process the JSON response here
             console.log(data);
-            randomSurah =  randomNumber(min, max);
+            randomSurah =  selectrandonFair(max - min) + min;
             rightanswernumber = randomSurah;
 
             numberOfAyahs = data.data.surahs[randomSurah].ayahs.length;
@@ -178,8 +178,6 @@ function askmepleae() {
                  wronganswers[i] = data.data.surahs[randomSurah].name;
                     
 
-            
-            
                                                      }
 
         answers = [];
@@ -280,3 +278,20 @@ function askmepleae() {
 function randomNumber(min, max) {  
 return Math.floor(Math.random() * (max - min + 1) + min - 1); 
 }    
+
+function selectrandonFair(max) {
+    var randomint = 0;
+    do {
+    max += 10;
+    var maxtwo = max * max;
+    randomint =  randomNumber(1, maxtwo);
+    console.log('inside function:' , randomint);
+    randomint =  Math.sqrt(randomint);
+    randomint = Math.floor(randomint);
+    randomint -= max;
+    randomint = Math.abs(randomint);
+    } while (randomint > max);
+    console.log('outside function:' , randomint);
+    return randomint;
+}
+
