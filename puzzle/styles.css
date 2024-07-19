@@ -68,7 +68,7 @@ h1, #askMe {
 #askMe {
     display: block;
     margin: 0 auto;
-    padding: 40px 140px;
+    padding: 40px 100px;
     background-color: #1a2028;
     color: white;
     border: none;
@@ -85,7 +85,7 @@ h1, #askMe {
 
 .basmlahp{
 text-align: center;
-margin: 0px 80px 20px 80px;
+margin: 0px 30% 20px 30%;
 font-family: Symbols1 ;
 font-size : 75px;
 font-weight: 50;;
