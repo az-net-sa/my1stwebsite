@@ -15,11 +15,12 @@
 source :https://fonts.qurancomplex.gov.sa/wp02/%d8%a7%d9%84%d9%85%d8%af%d8%b1%d8%ac%d8%a7%d8%aa/
 */
 body {
-    background-color: #1c1c1c;
+    background-color: #222831;
 
 }
 h1 {
     font-family: Mysymbols;
+    color: white;
 }
 h1, #askMe {
     text-align: center;
@@ -29,15 +30,17 @@ h1, #askMe {
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #1a2028;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 15px;
 }
 
 #askMe:hover {
-    background-color: #45a049;
+    background-color: #393E46;
+
 }
 
 .basmlahp{
@@ -61,16 +64,15 @@ font-weight: 800;
 .answerbutton {
     display:inline-block; ;
     padding: 10px;
-    width: 34%;
+    width: 50%;
     text-align: center;
     cursor: pointer;
     border-radius: 8px;
-    background-color: blue;
+    background-color: #222831;
     color: white;
     font-size: 16px;
     align-items: center;
     margin-top: 10px;
-    margin-left: 30px;
     margin-bottom: 10px;
 
 }
@@ -80,19 +82,29 @@ font-weight: 800;
 
 
 #AyahContainer {
-    background-color: rgb(47, 47, 47);
+    background-color:#393E46;
     justify-content: center;
     margin-top: 10px;
     color: #ffffff;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 15px;
 
 }
 
 #answerContainer {
-    background-color: rgb(35, 87, 161);
+    background-color:#00ADB5;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-top: -22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    visibility: hidden;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 15px;
 }
 
 #bar-container {
@@ -108,7 +120,7 @@ font-weight: 800;
 }
 
 #bar {
-    background-color: #45a049;
+    background-color: #007f85;
     height: 65%;
     width : 0%;
     margin: 5px;
