@@ -96,6 +96,7 @@
                 var weekIndex = Math.floor((result - 1) / 5);
                 var dayIndex = (result - 1) % 5;
                 day.textContent = `الأسبوع ${weeks[weekIndex]} - يوم ${days[dayIndex]}`;
+                timedev.textContent = time >= 1 && time <= 3 ? `الفترة: ${times[time - 1]}` : "إدخال خاطئ";
 
             } else if (input >= 51 && input <= 60) {
                 time = input % 2;
@@ -104,11 +105,13 @@
                 var weekIndex = Math.floor((result - 1) / 5);
                 var dayIndex = Math.floor((newInput - 1) / 2);
                 day.textContent = `الأسبوع ${weeks[weekIndex]} - يوم ${days[dayIndex]}`;
+                timedev.textContent = time >= 1 && time <= 3 ? `الفترة: ${times[time - 1]}` : "إدخال خاطئ";
+
             } else {
                 day.textContent = "إدخال خاطئ";
+                timedev.textContent = "إدخال خاطئ";
             }
            
-            timedev.textContent = time >= 1 && time <= 3 ? `الفترة: ${times[time - 1]}` : "إدخال خاطئ";
         }
     </script>
 </body>
