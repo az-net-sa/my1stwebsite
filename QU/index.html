@@ -99,15 +99,9 @@
                 day.textContent = `الأسبوع ${weeks[weekIndex]} - يوم ${days[dayIndex]}`;
                 timedev.textContent = time >= 1 && time <= 3 ? `الفترة: ${times[time - 1]}` : "إدخال خاطئ";
 
-            } else if (input >= 51 && input <= 65) {
-                var newInput = input - 50;
-                time = newInput % 3;
-                if (time == 0) time = 3;
-                var weekIndex = 3
-                var dayIndex = Math.floor((newInput - 1) / 3);
-                day.textContent = `الأسبوع ${weeks[weekIndex]} - يوم ${days[dayIndex]}`;
-                timedev.textContent = time >= 1 && time <= 3 ? `الفترة: ${times[time - 1]}` : "إدخال خاطئ";
-
+            } else if (input >= 46 && input <= 65) {
+                day.textContent = "أسبوع الإختبارات العملية";
+                timedev.textContent = "لم يتم ضبط الأداة لهذه الفترة";
             } else {
                 day.textContent = "إدخال خاطئ";
                 timedev.textContent = "إدخال خاطئ";
