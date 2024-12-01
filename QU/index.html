@@ -101,7 +101,7 @@
 
             } else if (input >= 51 && input <= 65) {
                 var newInput = input - 50;
-                time = input % 3;
+                time = newInput % 3;
                 if (time == 0) time = 3;
                 var weekIndex = Math.floor((result - 1) / 5);
                 var dayIndex = Math.floor((newInput - 1) / 2);
