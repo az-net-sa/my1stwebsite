@@ -99,8 +99,8 @@
                 day.textContent = `الأسبوع ${weeks[weekIndex]} - يوم ${days[dayIndex]}`;
                 timedev.textContent = time >= 1 && time <= 3 ? `الفترة: ${times[time - 1]}` : "إدخال خاطئ";
 
-            } else if (input >= 51 && input <= 60) {
-                time = input % 2;
+            } else if (input >= 51 && input <= 65) {
+                time = input % 3;
                 if (time == 0) time = 2;
                 var newInput = input - 50;
                 var weekIndex = Math.floor((result - 1) / 5);
