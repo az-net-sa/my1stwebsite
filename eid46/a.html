@@ -344,13 +344,27 @@
                 nameOverlay.style.lineHeight = '1.2';
                 nameOverlay.style.fontSize = `${fontSize}px`;
                 
-                // If name is very long, adjust vertical position to account for multiple lines
-                if (name.length > 25) {
-                    nameOverlay.style.top = '78%';
-                } else {
-                    nameOverlay.style.top = '81%';
-                }
-                
+// Ensure name is a string and trimmed
+let nameText = name.trim();
+
+// Adjust overlay position based on length
+if (nameText.length > 25) {
+    nameOverlay.style.top = '78%';
+} else {
+    nameOverlay.style.top = '81%';
+}
+
+// Split name into words, filtering out extra spaces
+let words = nameText.split(/\s+/); // Handles multiple spaces
+
+// If there are exactly four words, insert a line break after the second word
+if (words.length === 4) {
+    nameText = `${words[0]} ${words[1]}<br>${words[2]} ${words[3]}`;
+}
+
+// Apply the modified name to the overlay
+nameOverlay.innerHTML = nameText;
+         
                 // Hide loading, show result
                 loadingIndicator.style.display = 'none';
                 resultContainer.style.display = 'block';
