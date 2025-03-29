@@ -443,7 +443,7 @@ nameOverlay.innerHTML = nameText;
             try {
                 const dataURL = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
-                link.download = `صورة-${nameInput.value.replace(/\s+/g, '-')}.png`;
+                link.download = `معايدة حلق الراجحي ل${nameInput.value.replace(/\s+/g, ' ')}.png`;
                 link.href = dataURL;
                 link.click();
             } catch (e) {
