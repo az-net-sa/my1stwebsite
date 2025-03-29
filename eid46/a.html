@@ -397,11 +397,11 @@ nameOverlay.innerHTML = nameText;
             // Set font size based on name length (matching the display logic)
             let fontSize;
             if (name.length > 15) {
-                fontSize = Math.floor(canvas.width * 0.065); // 170% equivalent
+                fontSize = Math.floor(canvas.width * 0.075); // 170% equivalent
             } else if (name.length > 10) {
-                fontSize = Math.floor(canvas.width * 0.075); // 200% equivalent
+                fontSize = Math.floor(canvas.width * 0.085); // 200% equivalent
             } else {
-                fontSize = Math.floor(canvas.width * 0.085); // 250% equivalent
+                fontSize = Math.floor(canvas.width * 0.095); // 250% equivalent
             }
             
             let nameText = name.trim();
