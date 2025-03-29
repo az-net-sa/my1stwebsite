@@ -203,7 +203,6 @@
             left: 50%;
             top: 81%;
             transform: translate(-50%, -50%);
-            font-size: 200%;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7),
                         0 0 10px rgba(0, 0, 0, 0.5);
             padding: 0 20px;
@@ -276,7 +275,7 @@
             <h1>تهنئة حلق الراجحي</h1>
             
             <div class="instructions">
-                .أدخل اسمك لصنع تهنئة خاصة بك
+                أدخل اسمك لصنع تهنئة خاصة بك.
             </div>
             
             <div class="form-group">
@@ -328,15 +327,23 @@
                 
                 // Set the font size based on name length
                 const screenWidth = window.innerWidth;
-               
+                if (screenWidth <= 500) { // Mobile screens
                     if (name.length > 15) {
-                        fontSize = Math.floor(screenWidth * 0.045); // Adjusted for smaller screens
+                        fontSize = Math.floor(screenWidth * 0.07); // Adjusted for smaller screens
                     } else if (name.length > 10) {
-                        fontSize = Math.floor(screenWidth * 0.055);
+                        fontSize = Math.floor(screenWidth * 0.09);
                     } else {
-                        fontSize = Math.floor(screenWidth * 0.65);
+                        fontSize = Math.floor(screenWidth * 0.1);
                     }
-
+                } else { // Larger screens
+                    if (name.length > 15) {
+                        fontSize = Math.floor(screenWidth * 0.05); // 170% equivalent
+                    } else if (name.length > 10) {
+                        fontSize = Math.floor(screenWidth * 0.07); // 200% equivalent
+                    } else {
+                        fontSize = Math.floor(screenWidth * 0.08); // 250% equivalent
+                    }
+                }
                 console.log("Font size:", fontSize);
                 
                 // Enable text wrapping
