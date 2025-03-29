@@ -329,11 +329,11 @@
                 setTimeout(() => {
                     nameOverlay.textContent = name;
                     if (name.length > 15) {
-                        nameOverlay.style.fontSize = '170%';
+                        nameOverlay.style.fontSize = '190%';
                     } else if (name.length > 10) {
-                        nameOverlay.style.fontSize = '200%';
+                        nameOverlay.style.fontSize = '220%';
                     } else {
-                        nameOverlay.style.fontSize = '250%';
+                        nameOverlay.style.fontSize = '270%';
                     }
                     
                     // Hide loading, show result
@@ -366,6 +366,114 @@
                 }
             });
         });
+
+        downloadBtn.addEventListener('click', function() {
+    // Change button text to indicate downloading
+    const originalText = downloadBtn.textContent;
+    downloadBtn.textContent = 'جاري التحميل...';
+    downloadBtn.disabled = true;
+    
+    // Create a canvas to draw the image and text
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Create an image object for proper sizing
+    const img = new Image();
+    img.crossOrigin = "Anonymous"; // Handle CORS if needed
+    
+    img.onload = function() {
+        // Set canvas dimensions to match the image
+        canvas.width = img.width;
+        canvas.height = img.height;
+        
+        // Draw the image
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        // Get the name and calculate appropriate font size based on name length
+        const name = nameInput.value;
+        let fontSize;
+        
+        if (name.length > 15) {
+            fontSize = Math.floor(canvas.width * 0.06); // Smaller for longer names
+        } else if (name.length > 10) {
+            fontSize = Math.floor(canvas.width * 0.07); // Medium for medium-length names
+        } else {
+            fontSize = Math.floor(canvas.width * 0.08); // Default size
+        }
+        
+        // Set up text properties
+        ctx.font = `bold ${fontSize}px Tajawal`;
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // Add shadow for better visibility
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+        
+        // Position for text (80% from top)
+        const x = canvas.width * 0.5;
+        const y = canvas.height * 0.81;
+        
+        // Handle text wrapping for longer names
+        if (name.length > 20) {
+            // Split long text into multiple lines
+            const words = name.split(' ');
+            let line = '';
+            let lines = [];
+            
+            for (let i = 0; i < words.length; i++) {
+                const testLine = line + words[i] + ' ';
+                if (ctx.measureText(testLine).width > canvas.width * 0.8) {
+                    lines.push(line);
+                    line = words[i] + ' ';
+                } else {
+                    line = testLine;
+                }
+            }
+            lines.push(line);
+            
+            // Draw multiple lines
+            const lineHeight = fontSize * 1.2;
+            for (let i = 0; i < lines.length; i++) {
+                const offset = (i - (lines.length - 1) / 2) * lineHeight;
+                ctx.fillText(lines[i], x, y + offset);
+            }
+        } else {
+            // Draw single line
+            ctx.fillText(name, x, y);
+        }
+        
+        // Create a download link
+        try {
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `صورة-${nameInput.value.replace(/\s+/g, '-')}.png`;
+            link.href = dataURL;
+            link.click();
+            
+            downloadBtn.textContent = originalText;
+            downloadBtn.disabled = false;
+        } catch (e) {
+            console.error("Error creating download:", e);
+            alert('حدث خطأ أثناء تحميل الصورة. يرجى المحاولة مرة أخرى.');
+            downloadBtn.textContent = originalText;
+            downloadBtn.disabled = false;
+        }
+    };
+    
+    img.onerror = function() {
+        console.error("Error loading image");
+        alert('حدث خطأ أثناء تحميل الصورة. يرجى المحاولة مرة أخرى.');
+        downloadBtn.textContent = originalText;
+        downloadBtn.disabled = false;
+    };
+    
+    // Set the source to the same as the displayed image
+    img.src = baseImage.src;
+});
     </script>
 </body>
 </html>
