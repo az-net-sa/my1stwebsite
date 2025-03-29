@@ -392,17 +392,7 @@
                 // Get the name
                 const name = nameInput.value;
                 
-                // Set font size based on name length (matching the display logic)
-                let fontSize;
-                if (name.length > 15) {
-                    fontSize = Math.floor(canvas.width * 0.05); // 170% equivalent
-                } else if (name.length > 10) {
-                    fontSize = Math.floor(canvas.width * 0.07); // 200% equivalent
-                } else {
-                    fontSize = Math.floor(canvas.width * 0.08); // 250% equivalent
-                }
-                console.log("Font size:", fontSize);
-                
+
                 // Set up text properties
                 ctx.font = `bold ${fontSize}px Tajawal`;
                 ctx.fillStyle = 'white';
