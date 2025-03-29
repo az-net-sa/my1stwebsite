@@ -274,7 +274,7 @@
 <body>
     <div class="container">
         <div class="content">
-            <h1>تهنئة حلق الراجحي ببريدة</h1>
+            <h1>تهنئة حلق الراجحي</h1>
             
             <div class="instructions">
                 أدخل اسمك لصنع تهنئة خاصة بك.
@@ -304,171 +304,170 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const nameInput = document.getElementById('nameInput');
-    const generateBtn = document.getElementById('generateBtn');
-    const resultContainer = document.getElementById('resultContainer');
-    const nameOverlay = document.getElementById('nameOverlay');
-    const baseImage = document.getElementById('baseImage');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const loadingIndicator = document.getElementById('loadingIndicator');
-    
-    generateBtn.addEventListener('click', function() {
-        const name = nameInput.value.trim();
-        if (!name) {
-            return;
-        }
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        const nameInput = document.getElementById('nameInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const resultContainer = document.getElementById('resultContainer');
+        const nameOverlay = document.getElementById('nameOverlay');
+        const baseImage = document.getElementById('baseImage');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
         
-        // Show loading
-        loadingIndicator.style.display = 'block';
-        resultContainer.style.display = 'none';
-        downloadBtn.style.display = 'none';
-        
-        setTimeout(() => {
-            nameOverlay.textContent = name;
-            
-            // Set the font size based on name length
-            if (name.length > 15) {
-                nameOverlay.style.fontSize = '170%';
-            } else if (name.length > 10) {
-                nameOverlay.style.fontSize = '200%';
-            } else {
-                nameOverlay.style.fontSize = '250%';
+        generateBtn.addEventListener('click', function() {
+            const name = nameInput.value.trim();
+            if (!name) {
+                return;
             }
             
-            // Enable text wrapping
-            nameOverlay.style.whiteSpace = 'normal';
-            nameOverlay.style.wordWrap = 'break-word';
-            nameOverlay.style.maxWidth = '90%';
-            nameOverlay.style.lineHeight = '1.2';
+            // Show loading
+            loadingIndicator.style.display = 'block';
+            resultContainer.style.display = 'none';
+            downloadBtn.style.display = 'none';
             
-            // If name is very long, adjust vertical position to account for multiple lines
-            if (name.length > 20) {
-                nameOverlay.style.top = '78%';
-            } else {
-                nameOverlay.style.top = '81%';
-            }
-            
-            // Hide loading, show result
-            loadingIndicator.style.display = 'none';
-            resultContainer.style.display = 'block';
-            downloadBtn.style.display = 'block';
-        }, 800);
-    });
-    
-    downloadBtn.addEventListener('click', function() {
-        // Change button text to indicate downloading
-        const originalText = downloadBtn.textContent;
-        downloadBtn.textContent = 'جاري التحميل...';
-        downloadBtn.disabled = true;
-        
-        // Create a canvas to draw the image and text
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        
-        // Create an image object for proper sizing
-        const img = new Image();
-        img.crossOrigin = "Anonymous"; // Handle CORS if needed
-        
-        img.onload = function() {
-            // Set canvas dimensions to match the image
-            canvas.width = img.width;
-            canvas.height = img.height;
-            
-            // Draw the image
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            
-            // Get the name
-            const name = nameInput.value;
-            
-            // Set font size based on name length (matching the display logic)
-            let fontSize;
-            if (name.length > 15) {
-                fontSize = Math.floor(canvas.width * 0.06); // 170% equivalent
-            } else if (name.length > 10) {
-                fontSize = Math.floor(canvas.width * 0.07); // 200% equivalent
-            } else {
-                fontSize = Math.floor(canvas.width * 0.09); // 250% equivalent
-            }
-            
-            // Set up text properties
-            ctx.font = `bold ${fontSize}px Tajawal`;
-            ctx.fillStyle = 'white';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            
-            // Add shadow for better visibility
-            ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
-            ctx.shadowBlur = 10;
-            ctx.shadowOffsetX = 2;
-            ctx.shadowOffsetY = 2;
-            
-            // Position for text (matching the display position)
-            const x = canvas.width * 0.5;
-            const y = name.length > 20 ? canvas.height * 0.78 : canvas.height * 0.81;
-            
-            // Handle text wrapping for longer names
-            if (name.length > 20) {
-                // Split long text into multiple lines
-                const words = name.split(' ');
-                let line = '';
-                let lines = [];
+            setTimeout(() => {
+                nameOverlay.textContent = name;
                 
-                for (let i = 0; i < words.length; i++) {
-                    const testLine = line + words[i] + ' ';
-                    if (ctx.measureText(testLine).width > canvas.width * 0.8) {
-                        lines.push(line);
-                        line = words[i] + ' ';
-                    } else {
-                        line = testLine;
+                // Set the font size based on name length
+                if (name.length > 15) {
+                    nameOverlay.style.fontSize = '170%';
+                } else if (name.length > 10) {
+                    nameOverlay.style.fontSize = '200%';
+                } else {
+                    nameOverlay.style.fontSize = '250%';
+                }
+                
+                // Enable text wrapping
+                nameOverlay.style.whiteSpace = 'normal';
+                nameOverlay.style.wordWrap = 'break-word';
+                nameOverlay.style.maxWidth = '90%';
+                nameOverlay.style.lineHeight = '1.2';
+                
+                // If name is very long, adjust vertical position to account for multiple lines
+                if (name.length > 20) {
+                    nameOverlay.style.top = '78%';
+                } else {
+                    nameOverlay.style.top = '81%';
+                }
+                
+                // Hide loading, show result
+                loadingIndicator.style.display = 'none';
+                resultContainer.style.display = 'block';
+                downloadBtn.style.display = 'block';
+            }, 800);
+        });
+        
+        downloadBtn.addEventListener('click', function() {
+            // Change button text to indicate downloading
+            const originalText = downloadBtn.textContent;
+            downloadBtn.textContent = 'جاري التحميل...';
+            downloadBtn.disabled = true;
+            
+            // Create a canvas to draw the image and text
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Create an image object for proper sizing
+            const img = new Image();
+            img.crossOrigin = "Anonymous"; // Handle CORS if needed
+            
+            img.onload = function() {
+                // Set canvas dimensions to match the image
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // Draw the image
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                
+                // Get the name
+                const name = nameInput.value;
+                
+                // Set font size based on name length (matching the display logic)
+                let fontSize;
+                if (name.length > 15) {
+                    fontSize = Math.floor(canvas.width * 0.06); // 170% equivalent
+                } else if (name.length > 10) {
+                    fontSize = Math.floor(canvas.width * 0.07); // 200% equivalent
+                } else {
+                    fontSize = Math.floor(canvas.width * 0.09); // 250% equivalent
+                }
+                
+                // Set up text properties
+                ctx.font = `bold ${fontSize}px Tajawal`;
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                // Add shadow for better visibility
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 2;
+                ctx.shadowOffsetY = 2;
+                
+                // Position for text (matching the display position)
+                const x = canvas.width * 0.5;
+                const y = name.length > 20 ? canvas.height * 0.78 : canvas.height * 0.81;
+                
+                // Handle text wrapping for longer names
+                if (name.length > 20) {
+                    // Split long text into multiple lines
+                    const words = name.split(' ');
+                    let line = '';
+                    let lines = [];
+                    
+                    for (let i = 0; i < words.length; i++) {
+                        const testLine = line + words[i] + ' ';
+                        if (ctx.measureText(testLine).width > canvas.width * 0.8) {
+                            lines.push(line);
+                            line = words[i] + ' ';
+                        } else {
+                            line = testLine;
+                        }
                     }
+                    lines.push(line);
+                    
+                    // Draw multiple lines
+                    const lineHeight = fontSize * 1.2;
+                    for (let i = 0; i < lines.length; i++) {
+                        const offset = (i - (lines.length - 1) / 2) * lineHeight;
+                        ctx.fillText(lines[i], x, y + offset);
+                    }
+                } else {
+                    // Draw single line
+                    ctx.fillText(name, x, y);
                 }
-                lines.push(line);
                 
-                // Draw multiple lines
-                const lineHeight = fontSize * 1.2;
-                for (let i = 0; i < lines.length; i++) {
-                    const offset = (i - (lines.length - 1) / 2) * lineHeight;
-                    ctx.fillText(lines[i], x, y + offset);
+                // Create a download link
+                try {
+                    const dataURL = canvas.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    link.download = `صورة-${nameInput.value.replace(/\s+/g, '-')}.png`;
+                    link.href = dataURL;
+                    link.click();
+                } catch (e) {
+                    console.error("Error creating download:", e);
+                } finally {
+                    downloadBtn.textContent = originalText;
+                    downloadBtn.disabled = false;
                 }
-            } else {
-                // Draw single line
-                ctx.fillText(name, x, y);
-            }
+            };
             
-            // Create a download link
-            try {
-                const dataURL = canvas.toDataURL('image/png');
-                const link = document.createElement('a');
-                link.download = `صورة-${nameInput.value.replace(/\s+/g, '-')}.png`;
-                link.href = dataURL;
-                link.click();
-            } catch (e) {
-                console.error("Error creating download:", e);
-            } finally {
+            img.onerror = function() {
+                console.error("Error loading image");
                 downloadBtn.textContent = originalText;
                 downloadBtn.disabled = false;
+            };
+            
+            // Set the source to the same as the displayed image
+            img.src = baseImage.src;
+        });
+    
+        // Allow generating the image by pressing Enter
+        nameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateBtn.click();
             }
-        };
-        
-        img.onerror = function() {
-            console.error("Error loading image");
-            downloadBtn.textContent = originalText;
-            downloadBtn.disabled = false;
-        };
-        
-        // Set the source to the same as the displayed image
-        img.src = baseImage.src;
+        });
     });
-
-    // Allow generating the image by pressing Enter
-    nameInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            generateBtn.click();
-        }
-    });
-});
     </script>
 </body>
 </html>
