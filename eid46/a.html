@@ -310,6 +310,7 @@
         const baseImage = document.getElementById('baseImage');
         const downloadBtn = document.getElementById('downloadBtn');
         const loadingIndicator = document.getElementById('loadingIndicator');
+        let fontSize = 0;
         
         generateBtn.addEventListener('click', function() {
             const name = nameInput.value.trim();
@@ -391,18 +392,32 @@ nameOverlay.innerHTML = nameText;
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             
             // Get the name
-            const name = nameInput.value;
+            let name = nameInput.value;
             
             // Set font size based on name length (matching the display logic)
             let fontSize;
             if (name.length > 15) {
-                fontSize = Math.floor(canvas.width * 0.06); // 170% equivalent
+                fontSize = Math.floor(canvas.width * 0.065); // 170% equivalent
             } else if (name.length > 10) {
-                fontSize = Math.floor(canvas.width * 0.07); // 200% equivalent
+                fontSize = Math.floor(canvas.width * 0.075); // 200% equivalent
             } else {
-                fontSize = Math.floor(canvas.width * 0.08); // 250% equivalent
+                fontSize = Math.floor(canvas.width * 0.085); // 250% equivalent
             }
             
+            let nameText = name.trim();
+            // Split name into words, filtering out extra spaces
+            let words = nameText.split(/\s+/); // Handles multiple spaces
+
+            if (words.length === 4) {
+                nameText = `${words[0]} ${words[1]}\n${words[2]} ${words[3]}`;
+            } else if (words.length === 5) {
+                nameText = `${words[0]} ${words[1]}\n${words[2]} ${words[3]} ${words[4]}`;
+            }
+
+            // Replace \n with actual line breaks for canvas rendering
+
+
+            // Apply the modified name to the overlay
             // Set up text properties
             ctx.font = `bold ${fontSize}px Tajawal`;
             ctx.fillStyle = 'white';
@@ -419,34 +434,10 @@ nameOverlay.innerHTML = nameText;
             const x = canvas.width * 0.5;
             const y = name.length > 20 ? canvas.height * 0.78 : canvas.height * 0.81;
             
-            // Handle text wrapping for longer names
-            if (name.length > 20) {
-                // Split long text into multiple lines
-                const words = name.split(' ');
-                let line = '';
-                let lines = [];
-                
-                for (let i = 0; i < words.length; i++) {
-                    const testLine = line + words[i] + ' ';
-                    if (ctx.measureText(testLine).width > canvas.width * 0.8) {
-                        lines.push(line);
-                        line = words[i] + ' ';
-                    } else {
-                        line = testLine;
-                    }
-                }
-                lines.push(line);
-                
-                // Draw multiple lines
-                const lineHeight = fontSize * 1.2;
-                for (let i = 0; i < lines.length; i++) {
-                    const offset = (i - (lines.length - 1) / 2) * lineHeight;
-                    ctx.fillText(lines[i], x, y + offset);
-                }
-            } else {
-                // Draw single line
-                ctx.fillText(name, x, y);
-            }
+            const lines = nameText.split('\n');
+            lines.forEach((line, index) => {
+                ctx.fillText(line, x, y + index * fontSize * 1.4, canvas.width);
+            });            
             
             // Create a download link
             try {
