@@ -327,13 +327,25 @@
                 nameOverlay.textContent = name;
                 
                 // Set the font size based on name length
-                if (name.length > 15) {
-                    nameOverlay.style.fontSize = '170%';
-                } else if (name.length > 10) {
-                    nameOverlay.style.fontSize = '200%';
-                } else {
-                    nameOverlay.style.fontSize = '250%';
+                const screenWidth = window.innerWidth;
+                if (screenWidth <= 500) { // Mobile screens
+                    if (name.length > 15) {
+                        fontSize = Math.floor(screenWidth * 0.07); // Adjusted for smaller screens
+                    } else if (name.length > 10) {
+                        fontSize = Math.floor(screenWidth * 0.09);
+                    } else {
+                        fontSize = Math.floor(screenWidth * 0.1);
+                    }
+                } else { // Larger screens
+                    if (name.length > 15) {
+                        fontSize = Math.floor(screenWidth * 0.05); // 170% equivalent
+                    } else if (name.length > 10) {
+                        fontSize = Math.floor(screenWidth * 0.07); // 200% equivalent
+                    } else {
+                        fontSize = Math.floor(screenWidth * 0.08); // 250% equivalent
+                    }
                 }
+                console.log("Font size:", fontSize);
                 
                 // Enable text wrapping
                 nameOverlay.style.whiteSpace = 'normal';
@@ -383,12 +395,13 @@
                 // Set font size based on name length (matching the display logic)
                 let fontSize;
                 if (name.length > 15) {
-                    fontSize = Math.floor(canvas.width * 0.055); // 170% equivalent
+                    fontSize = Math.floor(canvas.width * 0.05); // 170% equivalent
                 } else if (name.length > 10) {
-                    fontSize = Math.floor(canvas.width * 0.065); // 200% equivalent
+                    fontSize = Math.floor(canvas.width * 0.07); // 200% equivalent
                 } else {
-                    fontSize = Math.floor(canvas.width * 0.085); // 250% equivalent
+                    fontSize = Math.floor(canvas.width * 0.08); // 250% equivalent
                 }
+                console.log("Font size:", fontSize);
                 
                 // Set up text properties
                 ctx.font = `bold ${fontSize}px Tajawal`;
