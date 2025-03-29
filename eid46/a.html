@@ -1,4 +1,311 @@
-document.addEventListener('DOMContentLoaded', function() {
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تهنئة حلق الراجحي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D5373;
+            --primary-light: #396B94;
+            --secondary: #48A784;
+            --accent: #F8D56B;
+            --background: #f7f9fc;
+            --card: #ffffff;
+            --text: #333333;
+            --light-text: #6c757d;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: right;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--card);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background-color: var(--accent);
+            opacity: 0.1;
+            border-radius: 0 0 0 150px;
+            z-index: 0;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+        
+        .instructions {
+            margin-bottom: 30px;
+            color: var(--light-text);
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+            text-align: center;
+            direction: rtl;
+        }
+        
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(45, 83, 115, 0.2);
+        }
+        
+        input::placeholder {
+            color: #aab7c4;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to left, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 83, 115, 0.3);
+        }
+        
+        .btn:hover::before {
+            right: 100%;
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        #downloadBtn {
+            background-color: var(--secondary);
+            margin-top: 25px;
+            display: none;
+        }
+        
+        #downloadBtn:hover {
+            background-color: #3a8c6e;
+        }
+        
+        #resultContainer {
+            margin: 30px auto 0;
+            position: relative;
+            display: none;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        #baseImage {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+        
+        #nameOverlay {
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+    text-align: center;
+    left: 50%;
+    top: 81%;
+    transform: translate(-50%, -50%);
+    font-size: 200%;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7),
+                 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 0 20px;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 90%;
+    line-height: 1.2;
+}
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            margin: 0 3px;
+            animation: loading 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading {
+            0%, 80%, 100% { 
+                transform: scale(0);
+            } 
+            40% { 
+                transform: scale(1);
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            input {
+                padding: 12px 15px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+            }
+            
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>تهنئة حلق الراجحي</h1>
+            
+            <div class="instructions">
+                أدخل اسمك لصنع تهنئة خاصة بك.
+            </div>
+            
+            <div class="form-group">
+                <input type="text" id="nameInput" placeholder="أدخل اسمك هنا" autocomplete="off">
+            </div>
+            
+            <button class="btn" id="generateBtn">إنشاء الصورة</button>
+            
+            <div class="loading" id="loadingIndicator">
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <p>جاري المعالجة...</p>
+            </div>
+            
+            <div id="resultContainer">
+                <img id="baseImage" src="eid46.jpg" alt="الصورة الأساسية">
+                <div id="nameOverlay"></div>
+            </div>
+            
+            <button class="btn" id="downloadBtn">تحميل الصورة</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
     const nameInput = document.getElementById('nameInput');
     const generateBtn = document.getElementById('generateBtn');
     const resultContainer = document.getElementById('resultContainer');
@@ -162,3 +469,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+    </script>
+</body>
+</html>
