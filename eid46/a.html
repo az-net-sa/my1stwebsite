@@ -195,24 +195,23 @@
         }
         
         #nameOverlay {
-    position: absolute;
-    font-weight: bold;
-    color: white;
-    width: 100%;
-    text-align: center;
-    left: 50%;
-    top: 81%;
-    transform: translate(-50%, -50%);
-    font-size: 200%;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7),
-                 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 0 20px;
-    white-space: normal;
-    word-wrap: break-word;
-    max-width: 90%;
-    line-height: 1.2;
-}
-        
+            position: absolute;
+            font-weight: bold;
+            color: white;
+            width: 100%;
+            text-align: center;
+            left: 50%;
+            top: 81%;
+            transform: translate(-50%, -50%);
+            font-size: 200%;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7),
+                        0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 0 20px;
+            white-space: normal;
+            word-wrap: break-word;
+            max-width: 90%;
+            line-height: 1.2;
+        }
         .loading {
             display: none;
             text-align: center;
@@ -384,11 +383,11 @@
                 // Set font size based on name length (matching the display logic)
                 let fontSize;
                 if (name.length > 15) {
-                    fontSize = Math.floor(canvas.width * 0.06); // 170% equivalent
+                    fontSize = Math.floor(canvas.width * 0.055); // 170% equivalent
                 } else if (name.length > 10) {
-                    fontSize = Math.floor(canvas.width * 0.07); // 200% equivalent
+                    fontSize = Math.floor(canvas.width * 0.065); // 200% equivalent
                 } else {
-                    fontSize = Math.floor(canvas.width * 0.09); // 250% equivalent
+                    fontSize = Math.floor(canvas.width * 0.085); // 250% equivalent
                 }
                 
                 // Set up text properties
