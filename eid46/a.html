@@ -327,23 +327,14 @@
                 
                 // Set the font size based on name length
                 const screenWidth = window.innerWidth;
-                if (screenWidth <= 500) { // Mobile screens
                     if (name.length > 15) {
-                        fontSize = Math.floor(screenWidth * 0.07); // Adjusted for smaller screens
+                        fontSize = Math.floor(screenWidth * 0.06);
                     } else if (name.length > 10) {
-                        fontSize = Math.floor(screenWidth * 0.09);
+                        fontSize = Math.floor(screenWidth * 0.07);
                     } else {
-                        fontSize = Math.floor(screenWidth * 0.1);
+                        fontSize = Math.floor(screenWidth * 0.08);
                     }
-                } else { // Larger screens
-                    if (name.length > 15) {
-                        fontSize = Math.floor(screenWidth * 0.05); // 170% equivalent
-                    } else if (name.length > 10) {
-                        fontSize = Math.floor(screenWidth * 0.07); // 200% equivalent
-                    } else {
-                        fontSize = Math.floor(screenWidth * 0.08); // 250% equivalent
-                    }
-                }
+                
                 console.log("Font size:", fontSize);
                 
                 // Enable text wrapping
@@ -351,9 +342,10 @@
                 nameOverlay.style.wordWrap = 'break-word';
                 nameOverlay.style.maxWidth = '90%';
                 nameOverlay.style.lineHeight = '1.2';
+                nameOverlay.style.fontSize = `${fontSize}px`;
                 
                 // If name is very long, adjust vertical position to account for multiple lines
-                if (name.length > 20) {
+                if (name.length > 25) {
                     nameOverlay.style.top = '78%';
                 } else {
                     nameOverlay.style.top = '81%';
