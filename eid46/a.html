@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إضافة اسمك على الصورة</title>
+    <title>تهنئة حلق الراجحي</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
@@ -195,19 +195,23 @@
         }
         
         #nameOverlay {
-            position: absolute;
-            font-weight: bold;
-            color: white;
-            width: 100%;
-            text-align: center;
-            left: 50%;
-            top: 80%;
-            transform: translate(-50%, -50%);
-            font-size: 200%;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7),
-                         0 0 10px rgba(0, 0, 0, 0.5);
-            padding: 0 20px;
-        }
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+    text-align: center;
+    left: 50%;
+    top: 81%;
+    transform: translate(-50%, -50%);
+    font-size: 200%;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7),
+                 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 0 20px;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 90%;
+    line-height: 1.2;
+}
         
         .loading {
             display: none;
@@ -263,19 +267,17 @@
                 padding: 12px 20px;
             }
             
-            #nameOverlay {
-                font-size: 150%;
-            }
+
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="content">
-            <h1>إضافة اسمك على الصورة</h1>
+            <h1>تهنئة حلق الراجحي</h1>
             
             <div class="instructions">
-                أدخل اسمك لإضافته على الصورة. سيظهر اسمك في أسفل الصورة.
+                أدخل اسمك لصنع تهنئة خاصة بك.
             </div>
             
             <div class="form-group">
@@ -324,10 +326,15 @@
                 resultContainer.style.display = 'none';
                 downloadBtn.style.display = 'none';
                 
-                // Simulate processing (remove in production)
                 setTimeout(() => {
-                    // Display the image with the name overlay
                     nameOverlay.textContent = name;
+                    if (name.length > 15) {
+                        nameOverlay.style.fontSize = '190%';
+                    } else if (name.length > 10) {
+                        nameOverlay.style.fontSize = '220%';
+                    } else {
+                        nameOverlay.style.fontSize = '270%';
+                    }
                     
                     // Hide loading, show result
                     loadingIndicator.style.display = 'none';
@@ -349,47 +356,7 @@
                     downloadBtn.disabled = false;
                 }, 1000);
                 
-                // The full implementation would use canvas to combine the image and text:
-                /*
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                
-                // Create an image object for proper sizing
-                const img = new Image();
-                img.onload = function() {
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    
-                    // Draw the image
-                    ctx.drawImage(img, 0, 0);
-                    
-                    // Draw the text
-                    const fontSize = Math.floor(img.width * 0.08); // Responsive font size
-                    ctx.font = `bold ${fontSize}px Tajawal`;
-                    ctx.fillStyle = 'white';
-                    ctx.textAlign = 'center';
-                    const x = canvas.width * 0.5; // 50%
-                    const y = canvas.height * 0.8; // 80%
-                    
-                    // Add shadow for better visibility
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowOffsetX = 2;
-                    ctx.shadowOffsetY = 2;
-                    
-                    ctx.fillText(nameInput.value, x, y);
-                    
-                    // Create download link
-                    const link = document.createElement('a');
-                    link.download = `صورة-${nameInput.value}.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                    
-                    downloadBtn.textContent = originalText;
-                    downloadBtn.disabled = false;
-                };
-                img.src = baseImage.src;
-                */
+               
             });
 
             // Allow generating the image by pressing Enter
