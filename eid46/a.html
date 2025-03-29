@@ -347,12 +347,7 @@
 // Ensure name is a string and trimmed
 let nameText = name.trim();
 
-// Adjust overlay position based on length
-if (nameText.length > 25) {
-    nameOverlay.style.top = '78%';
-} else {
-    nameOverlay.style.top = '81%';
-}
+
 
 // Split name into words, filtering out extra spaces
 let words = nameText.split(/\s+/); // Handles multiple spaces
