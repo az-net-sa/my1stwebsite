@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -15,82 +15,314 @@
             align-items: center;
             min-height: 100vh;
         }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            padding-bottom: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
             width: 100%;
         }
-        h1 {
-            color: #333;
+        .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin: 0;
+        }
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .mode-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            background: transparent;
+            color: #6c757d;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 4px;
+        }
+        .mode-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .mode-btn:hover:not(.active) {
+            background: #e9ecef;
+            color: #495057;
+        }
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .content-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         label {
             display: block;
-            margin-bottom: 10px;
-            color: #555;
-        }
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            font-weight: 600;
             font-size: 16px;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        input[type="number"]:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        .clear-btn {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        .clear-btn:hover {
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
         }
         #day, #time {
             margin-top: 20px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            font-weight: bold;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            font-weight: 600;
             text-align: center;
+            color: #2c3e50;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .note {
-            margin-top: 40px;
-            font-size: 16px;
-            color: #999;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-radius: 12px;
+            color: #856404;
             text-align: center;
+            border-left: 4px solid #ffc107;
+            font-size: 14px;
+            line-height: 1.5;
         }
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px;
+        .table-wrapper {
+            margin-top: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+        }
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #f1f3f4;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        tr:hover td {
+            background-color: #f8f9ff;
+        }
+        tr:nth-child(even) td {
+            background-color: #fafbfc;
+        }
+        .invalid-row td {
+            background-color: #ffebee !important;
+            color: #c62828;
+        }
+        .invalid-row:hover td {
+            background-color: #ffcdd2 !important;
+        }
+        .period-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            display: inline-block;
+            min-width: 40px;
+        }
+        .separator {
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        .separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+        }
+        .separator span {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0 20px;
+            color: #6c757d;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 25px;
+                margin: 10px;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+            .mode-selector {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .mode-btn {
+                margin: 0;
+            }
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 12px 8px;
+            }
+            .period-number {
+                padding: 6px 10px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>حاسبة وقت الاختبار لجامعة القصيم</h1>
-        
-        <label for="numberInput">أدخل الفترة:</label>
-        <input type="number" id="numberInput" oninput="calculate()">
-        
-        <div id="day"></div>
-        <div id="time"></div>
-        <p class="note">ملاحظة: الأداة تعمل للكليات بنظام الثلاث فترات, عمل الأدة لطلاب الكليات الأخرى غير مؤكد</p>
-        <p class="note">الأداة لا تعمل لحساب مواعيد الإختبارات الإلكترونية (عن بعد)</p>
+    <div class="main-container">
+        <div class="header">
+            <h1>حاسبة وقت الاختبار لجامعة القصيم</h1>
+            <p>اختر النمط المناسب لحساب مواعيد الاختبارات</p>
+        </div>
 
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="switchMode('single')">فترة واحدة</button>
+            <button class="mode-btn" onclick="switchMode('multiple')">فترات متعددة</button>
+        </div>
+
+        <!-- Single Period Section -->
+        <div id="singleMode" class="content-section active">
+            <label for="numberInput">أدخل الفترة:</label>
+            <input type="number" id="numberInput" placeholder="مثال: 15" oninput="calculate()">
+            
+            <div id="day"></div>
+            <div id="time"></div>
+
+            <div class="note">
+                <strong>ملاحظة:</strong> الأداة تعمل للكليات بنظام الثلاث فترات، عمل الأداة لطلاب الكليات الأخرى غير مؤكد<br>
+                الأداة لا تعمل لحساب مواعيد الاختبارات الإلكترونية (عن بعد)
+            </div>
+        </div>
+
+        <!-- Multiple Periods Section -->
+        <div id="multipleMode" class="content-section">
+            <label for="periodsInput">أدخل الفترات (مفصولة بفاصلة أو مسافة):</label>
+            <input type="text" id="periodsInput" placeholder="مثال: 1, 5, 10, 15, 20" onkeypress="handleEnterKey(event)">
+            
+            <button class="action-btn" onclick="generateTable()">إنشاء الجدول</button>
+            <button class="action-btn clear-btn" onclick="clearTable()">مسح الجدول</button>
+            
+            <div id="periodsTable"></div>
+
+            <div class="note">
+                <strong>ملاحظة:</strong> الأداة تعمل للكليات بنظام الثلاث فترات، عمل الأداة لطلاب الكليات الأخرى غير مؤكد<br>
+                الأداة لا تعمل لحساب مواعيد الاختبارات الإلكترونية (عن بعد)
+            </div>
+        </div>
     </div>
 
-
     <script>
+        function switchMode(mode) {
+            // Update button states
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (mode === 'single') {
+                document.querySelector('.mode-btn:first-child').classList.add('active');
+                document.getElementById('singleMode').classList.add('active');
+                document.getElementById('multipleMode').classList.remove('active');
+            } else {
+                document.querySelector('.mode-btn:last-child').classList.add('active');
+                document.getElementById('multipleMode').classList.add('active');
+                document.getElementById('singleMode').classList.remove('active');
+            }
+        }
+
         function calculate() {
             var input = document.getElementById("numberInput").value;
             var day = document.getElementById("day");
             var timedev = document.getElementById("time");
            
             var result = Math.ceil(input / 3);
-
            
             var weeks = [ "الأول", "الثاني", "الثالث" , "أسبوع الإختبارات العملية"];
             var days = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"];
             var times = ["من 8 إلى 10", "من 10:30 إلى 12:30", "من 1 إلى 3"];
-
+            
             if (input >= 1 && input <= 30) {
                 var time = input % 3;
                 if (time == 0) time = 3;
@@ -98,15 +330,122 @@
                 var dayIndex = (result - 1) % 5;
                 day.textContent = `الأسبوع ${weeks[weekIndex]} - يوم ${days[dayIndex]}`;
                 timedev.textContent = time >= 1 && time <= 3 ? `الفترة: ${times[time - 1]}` : "إدخال خاطئ";
-
             } else if (input >= 40 && input <= 70) {
                 day.textContent = "أسبوع الإختبارات العملية";
                 timedev.textContent = "لم يتم ضبط الأداة لهذه الفترة";
+            } else if (input === "") {
+                day.textContent = "";
+                timedev.textContent = "";
             } else {
                 day.textContent = "إدخال خاطئ";
                 timedev.textContent = "إدخال خاطئ";
             }
-           
+        }
+
+        function calculatePeriodInfo(period) {
+            var result = Math.ceil(period / 3);
+            var weeks = [ "الأول", "الثاني", "الثالث" , "أسبوع الإختبارات العملية"];
+            var days = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"];
+            var times = ["من 8 إلى 10", "من 10:30 إلى 12:30", "من 1 إلى 3"];
+            
+            if (period >= 1 && period <= 30) {
+                var time = period % 3;
+                if (time == 0) time = 3;
+                var weekIndex = Math.floor((result - 1) / 5);
+                var dayIndex = (result - 1) % 5;
+                
+                return {
+                    week: weeks[weekIndex],
+                    day: days[dayIndex],
+                    time: times[time - 1],
+                    valid: true
+                };
+            } else if (period >= 40 && period <= 70) {
+                return {
+                    week: "الإختبارات العملية",
+                    day: "غير محدد",
+                    time: "لم يتم ضبط الأداة لهذه الفترة",
+                    valid: true
+                };
+            } else {
+                return {
+                    week: "إدخال خاطئ",
+                    day: "إدخال خاطئ",
+                    time: "إدخال خاطئ",
+                    valid: false
+                };
+            }
+        }
+
+        function handleEnterKey(event) {
+            if (event.key === 'Enter') {
+                generateTable();
+            }
+        }
+
+        function generateTable() {
+            var input = document.getElementById("periodsInput").value.trim();
+            var tableDiv = document.getElementById("periodsTable");
+            
+            if (!input) {
+                alert("يرجى إدخال الفترات");
+                return;
+            }
+            
+            // Parse the input - split by comma, space, or both
+            var periods = input.split(/[,\s]+/).map(function(p) {
+                return parseInt(p.trim());
+            }).filter(function(p) {
+                return !isNaN(p);
+            });
+            
+            if (periods.length === 0) {
+                alert("يرجى إدخال فترات صحيحة");
+                return;
+            }
+            
+            // Remove duplicates and sort
+            periods = [...new Set(periods)].sort(function(a, b) { return a - b; });
+            
+            var tableHTML = `
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الفترة</th>
+                                <th>الأسبوع</th>
+                                <th>اليوم</th>
+                                <th>الوقت</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            periods.forEach(function(period) {
+                var info = calculatePeriodInfo(period);
+                var rowClass = info.valid ? '' : 'invalid-row';
+                tableHTML += `
+                    <tr class="${rowClass}">
+                        <td><span class="period-number">${period}</span></td>
+                        <td>${info.week}</td>
+                        <td>${info.day}</td>
+                        <td>${info.time}</td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            tableDiv.innerHTML = tableHTML;
+        }
+
+        function clearTable() {
+            document.getElementById("periodsInput").value = "";
+            document.getElementById("periodsTable").innerHTML = "";
         }
     </script>
 </body>
