@@ -396,9 +396,11 @@
                 var dayIndex = (result - 1) % 5;
                 day.textContent = `الأسبوع ${weeks[weekIndex]} - يوم ${days[dayIndex]}`;
                 timedev.textContent = time >= 1 && time <= 3 ? `الفترة: ${times[time - 1]}` : "إدخال خاطئ";
-            } else if (input >= 40 && input <= 70) {
-                day.textContent = "أسبوع الإختبارات العملية";
-                timedev.textContent = "لم يتم ضبط الأداة لهذه الفترة";
+            } else if (input >= 45 && input <= 70) {
+                var practicalDay = getPracticalExamDay(input);
+                var practicalTimes = getPracticalTimes(input);
+                day.textContent = `أسبوع الإختبارات العملية - يوم ${practicalDay}`;
+                timedev.textContent = `الفترة: ${practicalTimes}`;
             } else if (input === "") {
                 day.textContent = "";
                 timedev.textContent = "";
@@ -407,6 +409,38 @@
                 timedev.textContent = "إدخال خاطئ";
             }
         }
+
+        function getPracticalExamDay(period) {
+            // Hardcoded days for practical exams (periods 45-70)
+var practicalDays = {
+    45: "غير محدد", 46: "غير محدد", 47: "غير محدد", 48: "غير محدد",
+    49: "غير محدد", 50: "غير محدد", 51: "غير محدد", 52: "غير محدد",
+    53: "غير محدد", 54: "غير محدد", 55: "غير محدد", 56: "غير محدد",
+    57: "غير محدد", 58: "غير محدد", 59: "غير محدد", 60: "الخميس",
+    61: "الخميس", 62: "غير محدد", 63: "غير محدد", 64: "غير محدد",
+    65: "غير محدد", 66: "غير محدد", 67: "غير محدد", 68: "غير محدد",
+    69: "غير محدد", 70: "غير محدد"
+};
+
+
+
+
+            return practicalDays[period] || "غير محدد";
+        }
+
+function getPracticalTimes(period) {
+    var practicalTimes = {
+        45: "غير محدد", 46: "غير محدد", 47: "غير محدد", 48: "غير محدد",
+        49: "غير محدد", 50: "غير محدد", 51: "غير محدد", 52: "غير محدد",
+        53: "غير محدد", 54: "غير محدد", 55: "غير محدد", 56: "غير محدد",
+        57: "غير محدد", 58: "غير محدد", 59: "غير محدد", 60: "8-10",
+        61: "10:30-12:30", 62: "غير محدد", 63: "غير محدد", 64: "غير محدد",
+        65: "غير محدد", 66: "غير محدد", 67: "غير محدد", 68: "غير محدد",
+        69: "غير محدد", 70: "غير محدد"
+    };
+    return practicalTimes[period] || "غير محدد";
+}
+
 
         function calculatePeriodInfo(period) {
             var result = Math.ceil(period / 3);
@@ -426,11 +460,13 @@
                     time: times[time - 1],
                     valid: true
                 };
-            } else if (period >= 40 && period <= 70) {
+            } else if (period >= 45 && period <= 70) {
+                var practicalDay = getPracticalExamDay(period);
+                var practicalTimes = getPracticalTimes(period);
                 return {
                     week: "الإختبارات العملية",
-                    day: "غير محدد",
-                    time: "لم يتم ضبط الأداة لهذه الفترة",
+                    day: practicalDay,
+                    time: practicalTimes,
                     valid: true
                 };
             } else {
