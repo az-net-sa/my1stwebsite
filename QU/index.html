@@ -479,6 +479,18 @@ function getPracticalTimes(period) {
             }
         }
 
+        conflictDayDetected = function(periods, period) {
+            // Check for conflicts with other periods
+            return periods.some(function(p) {
+                return p !== period && Math.floor((p - 1) / 3) === Math.floor((period - 1) / 3);
+            });
+        };
+
+        function conflictPeriodDetected(periods, period) {
+            // Check if the period appears more than once (duplicate)
+            return periods.filter(p => p === period).length > 1;
+        }
+        
         function handleEnterKey(event) {
             if (event.key === 'Enter') {
                 generateTable();
@@ -506,8 +518,8 @@ function getPracticalTimes(period) {
                 return;
             }
             
-            // Remove duplicates and sort
-            periods = [...new Set(periods)].sort(function(a, b) { return a - b; });
+            // Just sort, do not remove duplicates
+            periods = periods.sort(function(a, b) { return a - b; });
             
             var tableHTML = `
                 <div class="table-wrapper">
@@ -525,7 +537,17 @@ function getPracticalTimes(period) {
             
             periods.forEach(function(period) {
                 var info = calculatePeriodInfo(period);
-                var rowClass = info.valid ? '' : 'invalid-row';
+                var rowClass = '';
+                if (!info.valid) {
+                    rowClass += 'invalid-row ';
+                } else if (conflictDayDetected(periods, period)) {
+                    rowClass += 'conflict-day-row ';
+                } else if (conflictPeriodDetected(periods, period)) {
+                    rowClass += 'conflict-period-row ';
+                } else {
+                    rowClass += 'valid-row ';
+                }
+                rowClass = rowClass.trim();
                 tableHTML += `
                     <tr class="${rowClass}">
                         <td><span class="period-number">${period}</span></td>
