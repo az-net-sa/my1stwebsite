@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الخطوط الجوية التواقية</title>
+    <title>الخطوط الجوية السكاي لاين - البحث عن التذكرة</title>
     <style>
         * {
             margin: 0;
@@ -359,7 +359,7 @@
 <body>
     <div class="header">
         <div class="logo">SL</div>
-        <div class="company-name">الخطوط الجوية التواقية</div>
+        <div class="company-name">الخطوط الجوية السكاي لاين</div>
     </div>
 
     <div class="container">
@@ -452,84 +452,269 @@
 
     <script>
         // Sample ticket data (simulating JSON file)
+        const arrivalCode = "AHB"
+        const arrivalName = "مطار أبها الدولي"
+        const departureTime = "17:15"
+        const arrivalTime = "5:05 +1"
+        const ticketClass = "سياحي"
+        //  ==================== flight 1 ================
+
+        const car1 = "santasky 300"
+        const flight1 = "SL 245"
+        const gate1 = "B7"
+        const departureCode1 = "ELQ"
+        const departureName1 = "مطار القصيم الدولي"
+  
+        const car2 = "HiluXpress 90"
+        const flight2 = "SL 247"
+        const gate2 = gate1
+        const departureCode2 = departureCode1
+        const departureName2 = departureName1
+        const date = "٢٧ صفر ١٤٤٧ هـ"
+
+
+
+        const car3 = "Fortuna Airliner 777"
+        const flight3 = "SL 442"
+        const gate3 = "D4"
+        const departureCode3 = "RUH"
+        const departureName3 = "مطار الملك خالد الدولي"
+
         const ticketDatabase = {
             "SL0032456": {
                 passengerName: "معاذ الزعبي",
-                flightNumber: "SL 245",
-                seatNumber: "12A",
-                gate: "B7",
-                departureCode: "ELQ",
-                departureName: "مطار القصيم الدولي",
-                arrivalCode: "AHB",
-                arrivalName: "مطار أبها الدولي",
-                departureTime: "15:30",
-                arrivalTime: "17:45",
-                aircraftModel: "بوينغ 737",
-                ticketClass: "سياحي",
-                date: "٢٧ صفر ١٤٤٧ هـ"
+                flightNumber: flight3,
+                seatNumber: "B2",
+                gate: gate3,
+                departureCode: departureCode3,
+                departureName: departureName3,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car3,
+                ticketClass: ticketClass,
+                date: date
             },
-            "SL002": {
-                passengerName: "Sarah Johnson",
-                flightNumber: "SL 156",
-                seatNumber: "8C",
-                gate: "A12",
-                departureCode: "LAX",
-                departureName: "Los Angeles International",
-                arrivalCode: "MIA",
-                arrivalName: "Miami International",
-                departureTime: "09:15",
-                arrivalTime: "17:20",
-                aircraftModel: "Airbus A350",
-                ticketClass: "Business",
-                date: "March 26, 2025"
+                "SL00324842": {
+                passengerName: "ريان الربيش",
+                flightNumber: flight3,
+                seatNumber: "A2",
+                gate: gate3,
+                departureCode: departureCode3,
+                departureName: departureName3,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car3,
+                ticketClass: ticketClass,
+                date: date
             },
-            "SL003": {
-                passengerName: "Michael Brown",
-                flightNumber: "SL 789",
-                seatNumber: "15F",
-                gate: "C5",
-                departureCode: "ORD",
-                departureName: "Chicago O'Hare International",
-                arrivalCode: "SEA",
-                arrivalName: "Seattle-Tacoma International",
-                departureTime: "11:00",
-                arrivalTime: "13:30",
-                aircraftModel: "Boeing 737-800",
-                ticketClass: "Economy Plus",
-                date: "March 27, 2025"
+            "SL00324863": {
+                passengerName: "جهاد الصقعبي",
+                flightNumber: flight3,
+                seatNumber: "C2",
+                gate: gate3,
+                departureCode: departureCode3,
+                departureName: departureName3,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car3,
+                ticketClass: ticketClass,
+                date: date
             },
-            "SL004": {
-                passengerName: "Emily Davis",
-                flightNumber: "SL 432",
-                seatNumber: "3B",
-                gate: "D9",
-                departureCode: "ATL",
-                departureName: "Hartsfield-Jackson Atlanta International",
-                arrivalCode: "DEN",
-                arrivalName: "Denver International",
-                departureTime: "16:45",
-                arrivalTime: "18:15",
-                aircraftModel: "Airbus A320",
-                ticketClass: "First Class",
-                date: "March 28, 2025"
+            "SL00324821": {
+                passengerName: "عبدالرحمن الروقي",
+                flightNumber: flight3,
+                seatNumber: "B1",
+                gate: gate3,
+                departureCode: departureCode3,
+                departureName: departureName3,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car3,
+                ticketClass: ticketClass,
+                date: date
             },
-            "SL005": {
-                passengerName: "David Wilson",
-                flightNumber: "SL 678",
-                seatNumber: "22D",
-                gate: "E3",
-                departureCode: "BOS",
-                departureName: "Boston Logan International",
-                arrivalCode: "SFO",
-                arrivalName: "San Francisco International",
-                departureTime: "07:30",
-                arrivalTime: "11:00",
-                aircraftModel: "Boeing 777-300ER",
-                ticketClass: "Economy",
-                date: "March 29, 2025"
+            "SL00324712": {
+                passengerName: "سليمان الدحيان",
+                flightNumber: flight3,
+                seatNumber: "A1",
+                gate: gate3,
+                departureCode: departureCode3,
+                departureName: departureName3,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car3,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00329425": {
+                passengerName: "عمر الوطبان",
+                flightNumber: flight1,
+                seatNumber: "A1",
+                gate: gate1,
+                departureCode: departureCode1,
+                departureName: departureName1,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car1,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00326342": {
+                passengerName: "عبدالعزيز التويجري",
+                flightNumber: flight1,
+                seatNumber: "B2",
+                gate: gate1,
+                departureCode: departureCode1,
+                departureName: departureName1,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car1,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00329363": {
+                passengerName: "صالح الجاسر",
+                flightNumber: flight1,
+                seatNumber: "B1",
+                gate: gate1,
+                departureCode: departureCode1,
+                departureName: departureName1,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car1,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00329924": {
+                passengerName: "عبد الملك الربعي",
+                flightNumber: flight1,
+                seatNumber: "A2",
+                gate: gate1,
+                departureCode: departureCode1,
+                departureName: departureName1,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car1,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00328324": {
+                passengerName: "صالح الرميح",
+                flightNumber: flight1,
+                seatNumber: "C2",
+                gate: gate1,
+                departureCode: departureCode1,
+                departureName: departureName1,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car1,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00329754": {
+                passengerName: "عبدالرحمن العييري",
+                flightNumber: flight2,
+                seatNumber: "A1",
+                gate: gate2,
+                departureCode: departureCode2,
+                departureName: departureName2,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car2,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00329777": {
+                passengerName: "ريان عبدالله حمود العبيدان",
+                flightNumber: flight2,
+                seatNumber: "B2",
+                gate: gate2,
+                departureCode: departureCode2,
+                departureName: departureName2,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car2,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00329924": {
+                passengerName: "عبدالله ال طالب",
+                flightNumber: flight2,
+                seatNumber: "B1",
+                gate: gate2,
+                departureCode: departureCode2,
+                departureName: departureName2,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car2,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00329782": {
+                passengerName: "محمد سراج الدين",
+                flightNumber: flight2,
+                seatNumber: "B2",
+                gate: gate2,
+                departureCode: departureCode2,
+                departureName: departureName2,
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: departureTime,
+                arrivalTime: arrivalTime,
+                aircraftModel: car2,
+                ticketClass: ticketClass,
+                date: date
+            },
+            "SL00443564": {
+                passengerName: "عبدالرحمن الجيزاني",
+                flightNumber: "SL 466",
+                seatNumber: "A1",
+                gate: "C1",
+                departureCode: "JED",
+                departureName: "مطار الملك عبد العزيز الدولي",
+                arrivalCode: arrivalCode,
+                arrivalName: arrivalName,
+                departureTime: "22:25",
+                arrivalTime: arrivalTime,
+                aircraftModel: "Fortuna Airliner 880 Neo",
+                ticketClass: "رجال الأعمال",
+                date: date
             }
+            
+            
         };
+ /*
+ ١- السنتافي - الوطبان التويجري الجاسر الربعي الرميح
+٢- الهيلوكس - العييري العبيدان ال طالب  سراج
 
+٣- فورتشنر- ابو داوود الزعبي الربيش الصقعبي الروقي
+ */
         let currentTicketData = null;
 
         function searchTicket() {
